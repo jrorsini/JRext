@@ -14,8 +14,7 @@ $(document).ready(() => {
 	}, 1000);
 
 	var showContent = function() {
-		alert(content);
-		// $('.ii.gt').text('Hello!');
+		$('.ii.gt').text('Hello!');
 	};
 });
 
