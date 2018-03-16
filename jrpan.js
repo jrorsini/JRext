@@ -1,3 +1,11 @@
+var tokenizer;
+
+kuromoji.builder({ dicPath: '/dict/' }).build(function(error, _tokenizer) {
+	if (error != null) console.log(error);
+	tokenizer = _tokenizer;
+	console.log('loaded');
+});
+
 $(document).ready(() => {
 	var content;
 
