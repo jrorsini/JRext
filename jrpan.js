@@ -1,6 +1,4 @@
 $(document).ready(() => {
-	alert('jrpan');
-
 	var content;
 
 	var getContent = setInterval(() => {
@@ -8,7 +6,6 @@ $(document).ready(() => {
 			content = $('.ii.gt')
 				.text()
 				.trim();
-			alert(content.length);
 			if (content.length > 0) {
 				showContent();
 				clearInterval(getContent);
@@ -18,6 +15,7 @@ $(document).ready(() => {
 
 	var showContent = function() {
 		alert(content);
+		// $('.ii.gt').text('Hello!');
 	};
 });
 
