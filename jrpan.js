@@ -1,13 +1,12 @@
-const kuromojiLoaded = () =>
-	new Promise((resolve, reject) => {
-		kuromoji.builder({ dicPath: './dict' }).build((error, _tokenizer) => {
-			if (error != null) console.log(error)
-			resolve(_tokenizer)
-		})
-	})
-
+let txtStyle = `
+	background: -webkit-linear-gradient(#f30065, #ff7e8a);;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent; 
+	position: relative;
+	`
 let selectedText
 let wholeText
+
 getSelectionText = () => {
 	var text = ''
 	if (window.getSelection) {
@@ -18,28 +17,26 @@ getSelectionText = () => {
 	return text
 }
 
-kuromojiLoaded().then(res => {
-	document.addEventListener('mouseup', e => {
-		selectedText = getSelectionText()
+document.addEventListener('mouseup', e => {
+	selectedText = getSelectionText()
 
+	Object.values(document.getElementsByClassName('jrpan-selection')).map(
+		(e, i) => {
+			e.parentNode.innerHTML = e.parentNode.innerText
+		}
+	)
+	if (selectedText !== '') {
+		wholeText = e.target.innerText
+		var re = new RegExp(selectedText, 'g')
+		e.target.innerHTML = wholeText.replace(
+			re,
+			`<b class="jrpan-selection" style="${txtStyle}">${selectedText}</b>`
+		)
+	} else {
 		Object.values(document.getElementsByClassName('jrpan-selection')).map(
 			(e, i) => {
-				e.parentNode.innerHTML = e.parentNode.innerText
+				e.innerHTML = e.innerText
 			}
 		)
-		if (selectedText !== '') {
-			wholeText = e.target.innerText
-			var re = new RegExp(selectedText, 'g')
-			e.target.innerHTML = wholeText.replace(
-				re,
-				`<b class="jrpan-selection" style="color: red; position: relative">${selectedText}</b>`
-			)
-		} else {
-			Object.values(document.getElementsByClassName('jrpan-selection')).map(
-				(e, i) => {
-					e.innerHTML = e.innerText
-				}
-			)
-		}
-	})
+	}
 })
