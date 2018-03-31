@@ -25,8 +25,11 @@ const getTranslation = word =>
 		xhr.send()
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState === 4) {
-				console.log(xhr.responseText)
-				resolve(xhr.responseText)
+				let data = JSON.parse(xhr.responseText)['data'][0]
+				console.log(data['japanese'][0]['word'])
+				console.log(data['japanese'][0]['reading'])
+				console.log(data['senses'][0]['english_definitions'])
+				resolve(data)
 			} else if (xhr.status !== 200) {
 				console.log(xhr.responseText)
 				resolve(xhr.responseText)
