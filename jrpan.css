@@ -1,0 +1,19 @@
+#jrpan-block {
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	z-index: 99;
+}
+
+.jrpan-btn {
+	display: inline-block;
+	-webkit-appearance: none;
+	background: -webkit-linear-gradient(#f30065, #ff7e8a);
+	color: #fff;
+	font-size: 20px;
+	border: none;
+	border-radius: 5px;
+	width: 200px;
+	height: 50px;
+	cursor: pointer;
+}

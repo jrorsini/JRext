@@ -16,7 +16,8 @@
 	"content_scripts": [
 		{
 			"matches": ["https://*/*"],
-			"js": ["jrpan.js"]
+			"js": ["jrpan.js"],
+			"css": ["jrpan.css"]
 		}
 	]
 }
