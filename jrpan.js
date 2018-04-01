@@ -1,14 +1,14 @@
-const kuromojiLoaded = () =>
-	new Promise((resolve, reject) => {
-		kuromoji.builder({ dicPath: './dict' }).build((error, _tokenizer) => {
-			if (error != null) console.log(error)
-			resolve(_tokenizer)
-		})
-	})
-
+let txtStyle = `
+	background: -webkit-linear-gradient(#f30065, #ff7e8a);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent; 
+	position: relative;
+	`
 let selectedText
 let wholeText
-getSelectionText = () => {
+let jrpanActive = false
+
+let getSelectionText = () => {
 	var text = ''
 	if (window.getSelection) {
 		text = window.getSelection().toString()
@@ -18,28 +18,74 @@ getSelectionText = () => {
 	return text
 }
 
-kuromojiLoaded().then(res => {
-	document.addEventListener('mouseup', e => {
-		selectedText = getSelectionText()
-		console.log(res)
-		Object.values(document.getElementsByClassName('jrpan-selection')).map(
-			(e, i) => {
-				e.parentNode.innerHTML = e.parentNode.innerText
+const getTranslation = word =>
+	new Promise((resolve, reject) => {
+		const xhr = new XMLHttpRequest()
+		xhr.open('GET', `https://jisho.org/api/v1/search/words?keyword=${word}/`)
+		xhr.setRequestHeader('Accept', 'application/json')
+		xhr.send()
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState === 4) {
+				let data = JSON.parse(xhr.responseText)['data'][0]
+				// console.log(data['japanese'][0]['word'])
+				// console.log(data['japanese'][0]['reading'])
+				// console.log(data['senses'][0]['english_definitions'])
+				resolve(data)
+			} else if (xhr.status !== 200) {
+				console.log(xhr.responseText)
+				resolve(xhr.responseText)
 			}
-		)
-		if (selectedText !== '') {
-			wholeText = e.target.innerText
-			var re = new RegExp(selectedText, 'g')
-			e.target.innerHTML = wholeText.replace(
-				re,
-				`<b class="jrpan-selection" style="color: red; position: relative">${selectedText}</b>`
-			)
-		} else {
-			Object.values(document.getElementsByClassName('jrpan-selection')).map(
-				(e, i) => {
-					e.innerHTML = e.innerText
-				}
-			)
 		}
 	})
+
+const createElement = () => {
+	let node = document.createElement('div')
+	node.id = 'jrpan-block'
+	document.body.appendChild(node)
+}
+
+const generateContentFromWord = data => {
+	return `
+		<div class="jrpan-popup">
+			<small>${data['japanese'][0]['word']}</small>
+			<p><b>${data['japanese'][0]['reading']}</b></p>
+			<i>${data['senses'][0]['english_definitions'].join(', ')}</i>
+		</div>
+		<button class="jrpan-btn">JRpan it</button>
+	`
+}
+
+const fillPopup = data => {
+	const jrpanBlockElement = document.getElementById('jrpan-block')
+	jrpanBlockElement.innerHTML = generateContentFromWord(data)
+}
+
+createElement()
+
+document.addEventListener('mouseup', e => {
+	const jrpanSelectionElements = document.getElementsByClassName(
+		'jrpan-selection'
+	)
+
+	selectedText = getSelectionText()
+
+	if (jrpanSelectionElements.length) {
+		Object.values(jrpanSelectionElements).map((e, i) => {
+			e.parentNode.innerHTML = e.parentNode.innerText
+		})
+	}
+
+	if (selectedText !== '') {
+		wholeText = e.target.innerText
+		const re = new RegExp(selectedText, 'g')
+		const selectionElement = `<b class="jrpan-selection" style="${txtStyle}">${selectedText}</b>`
+		e.target.innerHTML = wholeText.replace(re, selectionElement)
+		getTranslation(selectedText).then(res => {
+			fillPopup(res)
+		})
+	} else {
+		Object.values(jrpanSelectionElements).map((e, i) => {
+			e.innerHTML = e.innerText
+		})
+	}
 })
