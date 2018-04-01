@@ -7,6 +7,9 @@ chrome.runtime.onInstalled.addListener(function() {
 				conditions: [
 					new chrome.declarativeContent.PageStateMatcher({
 						pageUrl: { hostEquals: 'www.chatwork.com' }
+					}),
+					new chrome.declarativeContent.PageStateMatcher({
+						pageUrl: { hostEquals: 'mail.google.com' }
 					})
 				],
 				actions: [new chrome.declarativeContent.ShowPageAction()]
