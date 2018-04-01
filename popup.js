@@ -1,3 +1,18 @@
+let changeColor = document.getElementById('changeColor');
+
+chrome.storage.sync.get('color', function(data) {
+	changeColor.style.backgroundColor = data.color;
+	changeColor.setAttribute('value', data.color);
+});
+
+changeColor.onclick = function(element) {
+	let color = element.target.value;
+	chrome.tabs.executeScript(tabs[0].id, {
+		code: 'document.body.style.backgroundColor = "' + color + '";'
+	});
+};
+
+/*
 let txtStyle = `
 	background: -webkit-linear-gradient(#f30065, #ff7e8a);
 	-webkit-background-clip: text;
@@ -82,3 +97,4 @@ document.addEventListener('mouseup', e => {
 		)
 	}
 })
+*/
