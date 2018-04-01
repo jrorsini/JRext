@@ -57,21 +57,24 @@ const generateContentFromWord = data => {
 
 const fillPopup = data => {
 	const jrpanBlockElement = document.getElementById('jrpan-block');
-	jrpanBlockElement.innerHTML = '';
 	jrpanBlockElement.innerHTML = generateContentFromWord(data);
 };
 
 createElement();
 
 document.addEventListener('mouseup', e => {
+	const jrpanSelectionElements = document.getElementsByClassName(
+		'jrpan-selection'
+	);
+
 	selectedText = getSelectionText();
-	if (document.getElementsByClassName('jrpan-selection').length) {
-		Object.values(document.getElementsByClassName('jrpan-selection')).map(
-			(e, i) => {
-				e.parentNode.innerHTML = e.parentNode.innerText;
-			}
-		);
+
+	if (jrpanSelectionElements.length) {
+		Object.values(jrpanSelectionElements).map((e, i) => {
+			e.parentNode.innerHTML = e.parentNode.innerText;
+		});
 	}
+
 	if (selectedText !== '') {
 		wholeText = e.target.innerText;
 		const re = new RegExp(selectedText, 'g');
@@ -81,10 +84,8 @@ document.addEventListener('mouseup', e => {
 			fillPopup(res);
 		});
 	} else {
-		Object.values(document.getElementsByClassName('jrpan-selection')).map(
-			(e, i) => {
-				e.innerHTML = e.innerText;
-			}
-		);
+		Object.values(jrpanSelectionElements).map((e, i) => {
+			e.innerHTML = e.innerText;
+		});
 	}
 });
