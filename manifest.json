@@ -2,7 +2,14 @@
 	"name": "JRpan Extension",
 	"version": "1.0",
 	"description": "JRpan based extension for japanese text tokenization.",
-	"permissions": ["activeTab", "declarativeContent", "storage"],
+	"permissions": [
+		"tabs",
+		"http://*/*",
+		"https://*/*",
+		"activeTab",
+		"declarativeContent",
+		"storage"
+	],
 	"background": {
 		"scripts": ["background.js"],
 		"persistent": false

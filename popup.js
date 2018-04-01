@@ -5,13 +5,16 @@ chrome.storage.sync.get('color', function(data) {
 	changeColor.setAttribute('value', data.color);
 });
 
+chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+	console.log(tabs[0].url);
+});
+
 changeColor.onclick = function(element) {
 	let color = element.target.value;
 	chrome.tabs.executeScript(tabs[0].id, {
 		code: 'document.body.style.backgroundColor = "' + color + '";'
 	});
 };
-
 /*
 let txtStyle = `
 	background: -webkit-linear-gradient(#f30065, #ff7e8a);
