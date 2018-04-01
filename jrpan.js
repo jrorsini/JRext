@@ -6,6 +6,7 @@ let txtStyle = `
 	`;
 let selectedText;
 let wholeText;
+let jrpanActive = false;
 
 let getSelectionText = () => {
 	var text = '';
@@ -43,16 +44,21 @@ const createElement = () => {
 	document.body.appendChild(node);
 };
 
+const generateContentFromWord = data => {
+	return `
+		<div class="jrpan-popup">
+			<small>${data['japanese'][0]['word']}</small>
+			<p><b>${data['japanese'][0]['reading']}</b></p>
+			<i>${data['senses'][0]['english_definitions'].join(', ')}</i>
+		</div>
+		<button class="jrpan-btn">JRpan it</button>
+	`;
+};
+
 const fillPopup = data => {
-	document.getElementById('jrpan-block').innerHTML = '';
-	document.getElementById('jrpan-block').innerHTML = `
-	<div class="jrpan-popup">
-		<small>${data['japanese'][0]['word']}</small>
-		<p><b>${data['japanese'][0]['reading']}</b></p>
-		<i>${data['senses'][0]['english_definitions'].join(', ')}</i>
-	</div>
-	<button class="jrpan-btn">JRpan it</button>
-`;
+	const jrpanBlockElement = document.getElementById('jrpan-block');
+	jrpanBlockElement.innerHTML = '';
+	jrpanBlockElement.innerHTML = generateContentFromWord(data);
 };
 
 createElement();
