@@ -21,7 +21,7 @@ getSelectionText = () => {
 kuromojiLoaded().then(res => {
 	document.addEventListener('mouseup', e => {
 		selectedText = getSelectionText()
-
+		console.log(res)
 		Object.values(document.getElementsByClassName('jrpan-selection')).map(
 			(e, i) => {
 				e.parentNode.innerHTML = e.parentNode.innerText
