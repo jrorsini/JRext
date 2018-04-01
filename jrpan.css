@@ -1,8 +1,8 @@
 #jrpan-block {
-	position: absolute;
+	position: fixed;
 	right: 10px;
 	bottom: 10px;
-	z-index: 99;
+	z-index: 999;
 }
 
 .jrpan-popup {

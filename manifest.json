@@ -3,15 +3,15 @@
 	"description": "JRpan based extension for japanese text tokenization.",
 	"version": "1.0",
 	"manifest_version": 2,
-	"page_action": {
-		"default_popup": "popup.html",
-		"default_icon": "icon.png"
-	},
+	"permissions": ["activeTab","declarativeContent", "http://*/*", "https://*/*"],	
 	"background": {
 		"scripts": ["background.js"],
 		"persistent": false
 	},
-	"permissions": ["declarativeContent", "http://*/*", "https://*/*"],
+	"browser_action": {
+		"default_popup": "popup.html",
+		"default_icon": "icon.png"
+	},
 	"content_scripts": [
 		{
 			"matches": ["https://*/*"],
