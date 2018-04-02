@@ -3,7 +3,7 @@
 	"description": "JRpan based extension for japanese text tokenization.",
 	"version": "1.0",
 	"manifest_version": 2,
-	"permissions": ["activeTab","declarativeContent", "http://*/*", "https://*/*"],	
+	"permissions": ["tabs","activeTab","declarativeContent", "http://*/*", "https://*/*"],	
 	"background": {
 		"scripts": ["background.js"],
 		"persistent": false
