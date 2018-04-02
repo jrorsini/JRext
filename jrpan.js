@@ -6,7 +6,6 @@ let txtStyle = `
 	`
 let selectedText
 let wholeText
-let jrpanActive = false
 
 let getSelectionText = () => {
 	var text = ''
@@ -17,19 +16,24 @@ let getSelectionText = () => {
 	}
 	return text
 }
+
+// Function Promises list as to fetch word's sound.
+// START--
+
+/**
+ * @promise Get word's sound's id.
+ * @resolve {string} word's sound's ID
+ */
 const postSoundText = txt =>
 	new Promise((resolve, reject) => {
 		const xhr = new XMLHttpRequest()
 		xhr.open('POST', 'https://api.soundoftext.com/sounds', true)
-
 		xhr.setRequestHeader('Content-type', 'application/json')
-
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-				resolve(JSON.parse(xhr.response))
+				resolve(JSON.parse(xhr.response).id)
 			}
 		}
-
 		xhr.send(
 			JSON.stringify({
 				engine: 'Google',
@@ -41,6 +45,11 @@ const postSoundText = txt =>
 		)
 	})
 
+/**
+ * @param {string} id
+ * @promise Get word's sound's source location
+ * @resolve word's sound's source location
+ */
 const getSoundTxt = id =>
 	new Promise((resolve, reject) => {
 		var xhr = new XMLHttpRequest()
@@ -53,12 +62,20 @@ const getSoundTxt = id =>
 		xhr.send()
 	})
 
+/**
+ * @param {string} word
+ * @promise Get word's sound's source location
+ * @resolve word's sound's source location
+ */
 const soundTxt = w =>
 	new Promise((resolve, reject) => {
 		postSoundText(w)
-			.then(res => getSoundTxt(res.id).then(location => resolve(location)))
+			.then(id => getSoundTxt(id).then(location => resolve(location)))
 			.catch(err => console.log(err))
 	})
+
+// Function Promises list as to fetch word's sound.
+// START--
 
 const getTranslation = word =>
 	new Promise((resolve, reject) => {
