@@ -10,17 +10,11 @@
 
 <body>
   <h1 id="selectedText">JRpan</h1>
+  <button id="activationBtn">activate jrpan</button>
 </body>
 
-<script>
-  document.getElementById('selectedText').addEventListener('click', function() {
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      chrome.tabs.sendMessage(tabs[0].id, {greeting: "hello"}, function(response) {
-        console.log(response.farewell);
-      });
-    });
-  })
-  </script>
+<script src="popup.js"></script>
+
 </html>
 
 </html>
