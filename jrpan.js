@@ -7,6 +7,9 @@ let txtStyle = `
 let selectedText
 let wholeText
 
+/**
+ * @return {String} text from selection
+ */
 let getSelectionText = () => {
 	var text = ''
 	if (window.getSelection) {
