@@ -17,10 +17,8 @@ let getSelectionText = () => {
 	return text
 }
 
-// Function Promises list as to fetch word's sound.
-// START--
-
 /**
+ * @param {string} Word to get the sound of
  * @promise Get word's sound's id.
  * @resolve {string} word's sound's ID
  */
@@ -48,7 +46,7 @@ const postSoundText = txt =>
 /**
  * @param {string} id
  * @promise Get word's sound's source location
- * @resolve word's sound's source location
+ * @resolve {string} word's sound's source location
  */
 const getSoundTxt = id =>
 	new Promise((resolve, reject) => {
@@ -65,7 +63,7 @@ const getSoundTxt = id =>
 /**
  * @param {string} word
  * @promise Get word's sound's source location
- * @resolve word's sound's source location
+ * @resolve {string} word's sound's source location
  */
 const soundTxt = w =>
 	new Promise((resolve, reject) => {
@@ -74,9 +72,12 @@ const soundTxt = w =>
 			.catch(err => console.log(err))
 	})
 
-// Function Promises list as to fetch word's sound.
-// START--
-
+/**
+ * @param {string} word
+ * @promise Get translation information from word.
+ * @resolve {object} data from word passed in param.
+ * @reject {object} in case of failure reaching out to the API
+ */
 const getTranslation = word =>
 	new Promise((resolve, reject) => {
 		const xhr = new XMLHttpRequest()
@@ -92,7 +93,7 @@ const getTranslation = word =>
 				resolve(data)
 			} else if (xhr.status !== 200) {
 				console.log(xhr.responseText)
-				resolve(xhr.responseText)
+				reject(xhr.responseText)
 			}
 		}
 	})
