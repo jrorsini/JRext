@@ -17,7 +17,6 @@ let getSelectionText = () => {
 	}
 	return text
 }
-
 const postSoundText = txt =>
 	new Promise((resolve, reject) => {
 		const xhr = new XMLHttpRequest()
@@ -86,13 +85,19 @@ const createElement = () => {
 	node.id = 'jrpan-block'
 	document.body.appendChild(node)
 }
-
 const generateContentFromWord = data => {
 	return `
 		<div class="jrpan-popup">
-			<small>${data['japanese'][0]['word']}</small>
+			${
+				data['japanese'][0]['word']
+					? `<small>${data['japanese'][0]['word']}</small>`
+					: ''
+			}
 			<p><b>${data['japanese'][0]['reading']}</b></p>
 			<i>${data['senses'][0]['english_definitions'].join(', ')}</i>
+			<audio controls id="jrpan-sound">
+				<source src="" type="audio/mpeg">
+			</audio>
 		</div>
 		<button class="jrpan-btn">JRpan it</button>
 	`
@@ -125,7 +130,10 @@ document.addEventListener('mouseup', e => {
 		e.target.innerHTML = wholeText.replace(re, selectionElement)
 		getTranslation(selectedText).then(res => {
 			fillPopup(res)
-			soundTxt(selectedText).then(res => console.log(res))
+			soundTxt(selectedText).then(res => {
+				document.getElementById('jrpan-sound').src = res
+				document.getElementById('jrpan-sound').play()
+			})
 		})
 	} else {
 		Object.values(jrpanSelectionElements).map((e, i) => {
