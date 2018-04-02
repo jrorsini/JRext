@@ -18,6 +18,49 @@ let getSelectionText = () => {
 	return text
 }
 
+const postSoundText = txt =>
+	new Promise((resolve, reject) => {
+		const xhr = new XMLHttpRequest()
+		xhr.open('POST', 'https://api.soundoftext.com/sounds', true)
+
+		xhr.setRequestHeader('Content-type', 'application/json')
+
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+				resolve(JSON.parse(xhr.response))
+			}
+		}
+
+		xhr.send(
+			JSON.stringify({
+				engine: 'Google',
+				data: {
+					text: txt,
+					voice: 'ja-JP'
+				}
+			})
+		)
+	})
+
+const getSoundTxt = id =>
+	new Promise((resolve, reject) => {
+		var xhr = new XMLHttpRequest()
+		xhr.open('GET', `https://api.soundoftext.com/sounds/${id}`, true)
+
+		xhr.onload = function() {
+			resolve(JSON.parse(xhr.response).location)
+		}
+
+		xhr.send()
+	})
+
+const soundTxt = w =>
+	new Promise((resolve, reject) => {
+		postSoundText(w)
+			.then(res => getSoundTxt(res.id).then(location => resolve(location)))
+			.catch(err => console.log(err))
+	})
+
 const getTranslation = word =>
 	new Promise((resolve, reject) => {
 		const xhr = new XMLHttpRequest()
@@ -82,6 +125,7 @@ document.addEventListener('mouseup', e => {
 		e.target.innerHTML = wholeText.replace(re, selectionElement)
 		getTranslation(selectedText).then(res => {
 			fillPopup(res)
+			soundTxt(selectedText).then(res => console.log(res))
 		})
 	} else {
 		Object.values(jrpanSelectionElements).map((e, i) => {
