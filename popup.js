@@ -1,16 +1,14 @@
 'use strict'
 
-let injected = false
-const click = e => {
-	if (injected === false) {
-		chrome.tabs.executeScript(null, {
-			file: 'jrpan.js'
-		})
-		window.close()
-		injected = true
-	}
-}
-
 document.addEventListener('DOMContentLoaded', function() {
+	const click = e => {
+		if (!active) {
+			chrome.tabs.executeScript(null, {
+				code: 'var test'
+			})
+		}
+		window.close()
+	}
+
 	document.getElementById('activationBtn').addEventListener('click', click)
 })
