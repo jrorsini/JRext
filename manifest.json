@@ -3,7 +3,13 @@
 	"description": "JRpan based extension for japanese text tokenization.",
 	"version": "1.0",
 	"manifest_version": 2,
-	"permissions": ["tabs","activeTab","declarativeContent", "http://*/*", "https://*/*"],	
+	"permissions": [
+		"tabs",
+		"activeTab",
+		"declarativeContent",
+		"http://*/*",
+		"https://*/*"
+	],
 	"background": {
 		"scripts": ["background.js"],
 		"persistent": false
@@ -12,22 +18,22 @@
 		"default_popup": "popup.html",
 		"default_icon": {
 			"16": "jrpan-icon16.png",
-      "32": "jrpan-icon32.png",
-      "48": "jrpan-icon48.png",
-      "128": "jrpan-icon128.png"
-    }
+			"32": "jrpan-icon32.png",
+			"48": "jrpan-icon48.png",
+			"128": "jrpan-icon128.png"
+		}
 	},
 	"icons": {
-      "16": "jrpan-icon16.png",
-      "32": "jrpan-icon32.png",
-      "48": "jrpan-icon48.png",
-      "128": "jrpan-icon128.png"
-    },
+		"16": "jrpan-icon16.png",
+		"32": "jrpan-icon32.png",
+		"48": "jrpan-icon48.png",
+		"128": "jrpan-icon128.png"
+	},
 	"content_scripts": [
 		{
 			"matches": ["https://*/*"],
 			"css": ["jrpan.css"],
-			"js": ["kuromoji.js"]
+			"js": ["jrpan.js"]
 		}
 	]
 }

@@ -1,27 +1,21 @@
-let txtStyle = `
-	background: -webkit-linear-gradient(#f30065, #ff7e8a);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent; 
-	position: relative;
-	`
-let selected_text
-let wholeText
-let jrpanActive = false
+let selected_text;
+let wholeText;
+let jrpanActive = false;
 
 /**
  * @return {String} text from cursor selection
  */
 let getSelectionText = () => {
-	var text = ''
+	var text = '';
 	if (window.getSelection) {
-		text = window.getSelection().toString()
+		text = window.getSelection().toString();
 	} else if (document.selection && document.selection.type != 'Control') {
-		text = document.selection.createRange().text
+		text = document.selection.createRange().text;
 	}
-	return text
-}
+	return text;
+};
 
-console.log(kuromoji)
+// console.log(kuromoji);
 
 // kuromoji.builder({ dicPath: './dict/' }).build(function(err, tokenizer) {
 // 	var path = tokenizer.tokenize('すもももももももものうち')
@@ -35,14 +29,14 @@ console.log(kuromoji)
  */
 const postSoundText = txt =>
 	new Promise((resolve, reject) => {
-		const xhr = new XMLHttpRequest()
-		xhr.open('POST', 'https://api.soundoftext.com/sounds', true)
-		xhr.setRequestHeader('Content-type', 'application/json')
+		const xhr = new XMLHttpRequest();
+		xhr.open('POST', 'https://api.soundoftext.com/sounds', true);
+		xhr.setRequestHeader('Content-type', 'application/json');
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-				resolve(JSON.parse(xhr.response).id)
+				resolve(JSON.parse(xhr.response).id);
 			}
-		}
+		};
 		xhr.send(
 			JSON.stringify({
 				engine: 'Google',
@@ -51,8 +45,8 @@ const postSoundText = txt =>
 					voice: 'ja-JP'
 				}
 			})
-		)
-	})
+		);
+	});
 
 /**
  * @param {string} word's audio's id
@@ -61,15 +55,15 @@ const postSoundText = txt =>
  */
 const getSoundTxt = id =>
 	new Promise((resolve, reject) => {
-		var xhr = new XMLHttpRequest()
-		xhr.open('GET', `https://api.soundoftext.com/sounds/${id}`, true)
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', `https://api.soundoftext.com/sounds/${id}`, true);
 
 		xhr.onload = function() {
-			resolve(JSON.parse(xhr.response).location)
-		}
+			resolve(JSON.parse(xhr.response).location);
+		};
 
-		xhr.send()
-	})
+		xhr.send();
+	});
 
 /**
  * @param {string} word
@@ -80,8 +74,8 @@ const soundTxt = w =>
 	new Promise((resolve, reject) => {
 		postSoundText(w)
 			.then(id => getSoundTxt(id).then(location => resolve(location)))
-			.catch(err => console.log(err))
-	})
+			.catch(err => console.log(err));
+	});
 
 /**
  * @param {string} word
@@ -91,29 +85,29 @@ const soundTxt = w =>
  */
 const getTranslation = word =>
 	new Promise((resolve, reject) => {
-		const xhr = new XMLHttpRequest()
-		xhr.open('GET', `https://jisho.org/api/v1/search/words?keyword=${word}/`)
-		xhr.setRequestHeader('Accept', 'application/json')
-		xhr.send()
+		const xhr = new XMLHttpRequest();
+		xhr.open('GET', `https://jisho.org/api/v1/search/words?keyword=${word}/`);
+		xhr.setRequestHeader('Accept', 'application/json');
+		xhr.send();
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState === 4) {
-				let data = JSON.parse(xhr.responseText)['data'][0]
+				let data = JSON.parse(xhr.responseText)['data'][0];
 				// console.log(data['japanese'][0]['word'])
 				// console.log(data['japanese'][0]['reading'])
 				// console.log(data['senses'][0]['english_definitions'])
-				resolve(data)
+				resolve(data);
 			} else if (xhr.status !== 200) {
-				console.log(xhr.responseText)
-				reject(xhr.responseText)
+				console.log(xhr.responseText);
+				reject(xhr.responseText);
 			}
-		}
-	})
+		};
+	});
 
 const createElement = () => {
-	let node = document.createElement('div')
-	node.id = 'jrpan-block'
-	document.body.appendChild(node)
-}
+	let node = document.createElement('div');
+	node.id = 'jrpan-block';
+	document.body.appendChild(node);
+};
 
 /**
  * @param {object} fetched data from jisho's API.
@@ -134,51 +128,60 @@ const generateContentFromWord = data => {
 			</audio>
 		</div>
 		<button class="jrpan-btn">JRpan it</button>
-	`
-}
+	`;
+};
+
+/**
+ * @param {string} data is the HTML to insert
+ * @function that inject HTML markup for the bottom right block
+ */
+const fillPopup = data => {
+	const jrpanBlockElement = document.getElementById('jrpan-block');
+	jrpanBlockElement.innerHTML = generateContentFromWord(data);
+};
 
 /**
  * @param {string} audio file source.
  * @function set the audio file source and plays it.
  */
 const setAudio = src => {
-	const audio = document.getElementById('jrpan-sound')
-	audio.src = src
-	audio.play()
-}
+	const audio = document.getElementById('jrpan-sound');
+	audio.src = src;
+	audio.play();
+};
 
-const fillPopup = data => {
-	const jrpanBlockElement = document.getElementById('jrpan-block')
-	jrpanBlockElement.innerHTML = generateContentFromWord(data)
-}
-
-createElement()
+createElement();
 
 document.addEventListener('mouseup', e => {
-	const jrpan_selected_element = document.getElementsByClassName(
-		'jrpan-selection'
-	)
+	const jrpan_slctd_el = document.getElementsByClassName('jrpan-selection');
 
-	if (jrpan_selected_element.length) {
-		Object.values(jrpan_selected_element).map((e, i) => {
-			e.parentNode.innerHTML = e.parentNode.innerText
-		})
+	if (jrpan_slctd_el && jrpan_slctd_el.length) {
+		Object.values(jrpan_slctd_el).map((e, i) => {
+			const el_parent = e.parentNode;
+			const re = new RegExp(
+				`<b class="jrpan-selection">${e.innerText}</b>`,
+				'g'
+			);
+			if (el_parent) {
+				el_parent.innerHTML = el_parent.innerHTML.replace(re, e.innerText);
+			}
+		});
 	}
 
-	selected_text = getSelectionText()
+	selected_text = getSelectionText();
 
 	if (selected_text !== '') {
-		wholeText = e.target.innerHTML
-		const re = new RegExp(selected_text, 'g')
-		const selection_element_html = `<b class="jrpan-selection" style="${txtStyle}">${selected_text}</b>`
-		e.target.innerHTML = wholeText.replace(re, selection_element_html)
+		wholeText = e.target.innerHTML;
+		const re = new RegExp(selected_text, 'g');
+		const word_markup = `<b class="jrpan-selection">${selected_text}</b>`;
+		e.target.innerHTML = wholeText.replace(re, word_markup);
 		getTranslation(selected_text).then(res => {
-			fillPopup(res)
-			soundTxt(selected_text).then(setAudio)
-		})
+			fillPopup(res);
+			soundTxt(selected_text).then(setAudio);
+		});
 	} else {
-		Object.values(jrpan_selected_element).map((e, i) => {
-			e.innerHTML = e.innerHTML
-		})
+		Object.values(jrpan_slctd_el).map((e, i) => {
+			e.innerHTML = e.innerHTML;
+		});
 	}
-})
+});
