@@ -6,6 +6,7 @@ let txtStyle = `
 	`
 let selectedText
 let wholeText
+let jrpanActive = false
 
 /**
  * @return {String} text from cursor selection

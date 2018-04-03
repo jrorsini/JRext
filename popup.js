@@ -2,11 +2,12 @@
 
 let injected = false
 const click = e => {
-	if (!injected) {
+	if (injected === false) {
 		chrome.tabs.executeScript(null, {
 			file: 'jrpan.js'
 		})
 		window.close()
+		injected = true
 	}
 }
 
