@@ -15,6 +15,13 @@ let getSelectionText = () => {
 	return text
 }
 
+/**
+ * @param {String} selected text to markuup.
+ * @return {String} marked up selection.
+ */
+
+const markup = selection => `<b class="jrpan-selection">${selection}</b>`
+
 // console.log(kuromoji);
 
 // kuromoji.builder({ dicPath: './dict/' }).build(function(err, tokenizer) {
