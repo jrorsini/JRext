@@ -1,3 +1,12 @@
+::-moz-selection {
+	color: red;
+	background: yellow;
+}
+
+::selection {
+	color: red;
+	background: yellow;
+}
 #jrpan-block {
 	position: fixed;
 	right: 10px;
