@@ -159,19 +159,19 @@ document.addEventListener('mouseup', e => {
 		'jrpan-selection'
 	)
 
-	selected_text = getSelectionText()
-
 	if (jrpan_selected_element.length) {
 		Object.values(jrpan_selected_element).map((e, i) => {
 			e.parentNode.innerHTML = e.parentNode.innerText
 		})
 	}
 
+	selected_text = getSelectionText()
+
 	if (selected_text !== '') {
 		wholeText = e.target.innerHTML
 		const re = new RegExp(selected_text, 'g')
-		const selectionElement = `<b class="jrpan-selection" style="${txtStyle}">${selected_text}</b>`
-		e.target.innerHTML = wholeText.replace(re, selectionElement)
+		const selection_element_html = `<b class="jrpan-selection" style="${txtStyle}">${selected_text}</b>`
+		e.target.innerHTML = wholeText.replace(re, selection_element_html)
 		getTranslation(selected_text).then(res => {
 			fillPopup(res)
 			soundTxt(selected_text).then(setAudio)
