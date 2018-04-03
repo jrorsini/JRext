@@ -195,10 +195,7 @@ document.addEventListener('mouseup', e => {
 	if (jrpan_slctd_el && jrpan_slctd_el.length) {
 		Object.values(jrpan_slctd_el).map((e, i) => {
 			const el_parent = e.parentNode
-			const re = new RegExp(
-				`<b class="jrpan-selection">${e.innerText}</b>`,
-				'g'
-			)
+			const re = new RegExp(markup(e.innerText), 'g')
 			if (el_parent) {
 				el_parent.innerHTML = el_parent.innerHTML.replace(re, e.innerText)
 			}
@@ -210,8 +207,7 @@ document.addEventListener('mouseup', e => {
 	if (selected_text !== '') {
 		wholeText = e.target.innerHTML
 		const re = new RegExp(selected_text, 'g')
-		const word_markup = `<b class="jrpan-selection">${selected_text}</b>`
-		e.target.innerHTML = wholeText.replace(re, word_markup)
+		e.target.innerHTML = wholeText.replace(re, markup(selected_text))
 		getTranslation(selected_text).then(res => {
 			fillPopup(res)
 			soundTxt(selected_text).then(setAudio)
