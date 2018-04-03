@@ -8,7 +8,7 @@ let selectedText
 let wholeText
 
 /**
- * @return {String} text from selection
+ * @return {String} text from cursor selection
  */
 let getSelectionText = () => {
 	var text = ''
@@ -21,9 +21,9 @@ let getSelectionText = () => {
 }
 
 /**
- * @param {string} Word to get the sound of
+ * @param {string} Word from which we get audio ID
  * @promise Get word's sound's id.
- * @resolve {string} word's sound's ID
+ * @resolve {string} passed in word's sound's ID
  */
 const postSoundText = txt =>
 	new Promise((resolve, reject) => {
@@ -47,7 +47,7 @@ const postSoundText = txt =>
 	})
 
 /**
- * @param {string} id
+ * @param {string} word's audio's id
  * @promise Get word's sound's source location
  * @resolve {string} word's sound's source location
  */
@@ -106,6 +106,11 @@ const createElement = () => {
 	node.id = 'jrpan-block'
 	document.body.appendChild(node)
 }
+
+/**
+ * @param {object} fetched data from jisho's API.
+ *
+ */
 const generateContentFromWord = data => {
 	return `
 		<div class="jrpan-popup">
