@@ -1,14 +1,14 @@
 'use strict'
 
+const click = e => {
+	chrome.tabs.executeScript(null, {
+		file: 'kuromoji.js'
+	})
+	chrome.tabs.executeScript(null, {
+		file: 'jrpan.js'
+	})
+	window.close()
+}
 document.addEventListener('DOMContentLoaded', function() {
-	const click = e => {
-		if (!active) {
-			chrome.tabs.executeScript(null, {
-				code: 'var test'
-			})
-		}
-		window.close()
-	}
-
 	document.getElementById('activationBtn').addEventListener('click', click)
 })

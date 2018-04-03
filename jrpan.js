@@ -21,6 +21,14 @@ let getSelectionText = () => {
 	return text
 }
 
+console.log(kuromoji)
+
+kuromoji.builder({ dicPath: '/dict/' }).build(function(err, tokenizer) {
+	// tokenizer is ready
+	var path = tokenizer.tokenize('すもももももももものうち')
+	console.log(path)
+})
+
 /**
  * @param {string} Word from which we get audio ID
  * @promise Get word's sound's id.

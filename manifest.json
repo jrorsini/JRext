@@ -26,7 +26,8 @@
 	"content_scripts": [
 		{
 			"matches": ["https://*/*"],
-			"css": ["jrpan.css"]
+			"css": ["jrpan.css"],
+			"js": ["kuromoji.js"]
 		}
 	]
 }
