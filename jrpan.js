@@ -4,7 +4,7 @@ let txtStyle = `
 	-webkit-text-fill-color: transparent; 
 	position: relative;
 	`
-let selectedText
+let selected_text
 let wholeText
 let jrpanActive = false
 
@@ -117,7 +117,7 @@ const createElement = () => {
 
 /**
  * @param {object} fetched data from jisho's API.
- *
+ * @return {string} HTML text value.
  */
 const generateContentFromWord = data => {
 	return `
@@ -137,6 +137,16 @@ const generateContentFromWord = data => {
 	`
 }
 
+/**
+ * @param {string} audio file source.
+ * @function set the audio file source and plays it.
+ */
+const setAudio = src => {
+	const audio = document.getElementById('jrpan-sound')
+	audio.src = src
+	audio.play()
+}
+
 const fillPopup = data => {
 	const jrpanBlockElement = document.getElementById('jrpan-block')
 	jrpanBlockElement.innerHTML = generateContentFromWord(data)
@@ -145,33 +155,30 @@ const fillPopup = data => {
 createElement()
 
 document.addEventListener('mouseup', e => {
-	const jrpanSelectionElements = document.getElementsByClassName(
+	const jrpan_selected_element = document.getElementsByClassName(
 		'jrpan-selection'
 	)
 
-	selectedText = getSelectionText()
+	selected_text = getSelectionText()
 
-	if (jrpanSelectionElements.length) {
-		Object.values(jrpanSelectionElements).map((e, i) => {
+	if (jrpan_selected_element.length) {
+		Object.values(jrpan_selected_element).map((e, i) => {
 			e.parentNode.innerHTML = e.parentNode.innerText
 		})
 	}
 
-	if (selectedText !== '') {
-		wholeText = e.target.innerText
-		const re = new RegExp(selectedText, 'g')
-		const selectionElement = `<b class="jrpan-selection" style="${txtStyle}">${selectedText}</b>`
+	if (selected_text !== '') {
+		wholeText = e.target.innerHTML
+		const re = new RegExp(selected_text, 'g')
+		const selectionElement = `<b class="jrpan-selection" style="${txtStyle}">${selected_text}</b>`
 		e.target.innerHTML = wholeText.replace(re, selectionElement)
-		getTranslation(selectedText).then(res => {
+		getTranslation(selected_text).then(res => {
 			fillPopup(res)
-			soundTxt(selectedText).then(res => {
-				document.getElementById('jrpan-sound').src = res
-				document.getElementById('jrpan-sound').play()
-			})
+			soundTxt(selected_text).then(setAudio)
 		})
 	} else {
-		Object.values(jrpanSelectionElements).map((e, i) => {
-			e.innerHTML = e.innerText
+		Object.values(jrpan_selected_element).map((e, i) => {
+			e.innerHTML = e.innerHTML
 		})
 	}
 })
