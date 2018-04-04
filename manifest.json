@@ -32,7 +32,13 @@
 	"content_scripts": [
 		{
 			"matches": ["https://*/*"],
-			"js": ["/content_scripts/kuromoji.js", "/content_scripts/load-kuromoji.js"]
+			"js": [
+				"/content_scripts/kuromoji.js",
+				"/content_scripts/load-kuromoji.js",
+				"/content_scripts/vars.js",
+				"/content_scripts/functions.js",
+				"/content_scripts/promises.js"
+			]
 		}
 	],
 	"web_accessible_resources": [
