@@ -3,13 +3,14 @@
  * @return {String} marked up from kuromoji.
  */
 const kuromojiMarkup = selection => {
-	let path = tokenizer.tokenizeForSentence(selection)
+	let path = tokenizer.tokenizeForSentence(selection);
+	console.log(path);
 	return path
 		.map((e, i) => {
-			return `<span>${e.surface_form}</span>`
+			return `<span>${e.surface_form}</span>`;
 		})
-		.join('')
-}
+		.join('');
+};
 
 /**
  * @param {String} text selected
@@ -21,23 +22,23 @@ const escapesBrackets = text =>
 		.replace(/\(/g, '\\(')
 		.replace(/\)/g, '\\)')
 		.replace(/\（/g, '\\（')
-		.replace(/\）/g, '\\）')
+		.replace(/\）/g, '\\）');
 
 /**
  * @return {String} text from cursor selection
  */
 let getSelectionText = () => {
-	var text = ''
+	var text = '';
 	if (window.getSelection) {
-		text = window.getSelection().toString()
+		text = window.getSelection().toString();
 	} else if (document.selection && document.selection.type != 'Control') {
-		text = document.selection.createRange().text
+		text = document.selection.createRange().text;
 	}
-	return text
-}
+	return text;
+};
 
 /**
  * @param {String} selected text to markup.
  * @return {String} marked up selection.
  */
-const markup = selection => `<b class="jrpan-selection">${selection}</b>`
+const markup = selection => `<b class="jrpan-selection">${selection}</b>`;

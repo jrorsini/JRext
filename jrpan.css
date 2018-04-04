@@ -1,56 +1,94 @@
 ::-moz-selection {
-    color: #fff;
-    background: #de559a;
+	color: #fff;
+	background: #de559a;
 }
 
 ::selection {
-    color: #fff;
-    background: #de559a;
+	color: #fff;
+	background: #de559a;
 }
 
 #jrpan-block {
-    position: fixed;
-    right: 10px;
-    bottom: 10px;
-    z-index: 999;
+	position: fixed;
+	right: 10px;
+	bottom: 10px;
+	z-index: 999;
 }
 
 .jrpan-popup {
-    position: absolute;
-    bottom: 50px;
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
-    padding: 10px;
-    background: #fff;
-    width: 200px;
-    right: 0;
-    border-radius: 3px;
+	position: absolute;
+	bottom: 50px;
+	box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+	padding: 10px;
+	background: #fff;
+	width: 200px;
+	right: 0;
+	border-radius: 3px;
 }
 
 .jrpan-btn {
-    display: inline-block;
-    -webkit-appearance: none;
-    background: -webkit-linear-gradient(#de559a, #fb92b1);
-    color: #fff;
-    font-size: 20px;
-    border: none;
-    border-radius: 5px;
-    width: 120px;
-    height: 40px;
-    cursor: pointer;
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+	display: inline-block;
+	-webkit-appearance: none;
+	background: -webkit-linear-gradient(#de559a, #fb92b1);
+	color: #fff;
+	font-size: 20px;
+	border: none;
+	border-radius: 5px;
+	width: 120px;
+	height: 40px;
+	cursor: pointer;
+	box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 .jrpan-selection {
-    background: -webkit-linear-gradient(#de559a, #fb92b1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    position: relative;
+	background: -webkit-linear-gradient(#de559a, #fb92b1);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	position: relative;
 }
 
 audio#jrpan-sound {
-    width: 200px;
+	width: 200px;
 }
 
-body {
-    background: url(./icon.png);
+/* Glossed text style START */
+
+.verb-gloss {
+	-webkit-text-stroke-color: #4dd0e1;
+}
+
+.noun-gloss {
+	-webkit-text-stroke-color: #673ab7;
+}
+
+.suffix-gloss {
+	-webkit-text-stroke-color: #003a69;
+}
+
+.adverb-gloss {
+	-webkit-text-stroke-color: #fdd835;
+}
+
+.general-gloss {
+	-webkit-text-stroke-color: #757575;
+}
+
+.adjective-gloss {
+	-webkit-text-stroke-color: #43a047;
+}
+
+.conjuction-gloss {
+	-webkit-text-stroke-color: #e65100;
+}
+
+.interjection-gloss {
+	-webkit-text-stroke-color: #f48fb1;
+}
+
+.auxiliaryVerb-gloss {
+	-webkit-text-stroke-color: #4db6ac;
+}
+
+.adnominalAdjective-gloss {
+	-webkit-text-stroke-color: #fb8c00;
 }
