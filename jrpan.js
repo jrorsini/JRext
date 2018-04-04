@@ -7,11 +7,6 @@ let jrpanActive = false
  * @return {String} marked up from kuromoji.
  */
 const kuromojiMarkup = selection => {
-	selection = selection
-		.replace(/\(/g, '\\(')
-		.replace(/\)/g, '\\)')
-		.replace(/\（/g, '\\（')
-		.replace(/\）/g, '\\）')
 	let path = tokenizer.tokenizeForSentence(selection)
 	return path
 		.map((e, i) => {
@@ -19,6 +14,18 @@ const kuromojiMarkup = selection => {
 		})
 		.join('')
 }
+
+/**
+ * @param {String} text selected
+ * @return {String} text with brackets escaped
+ */
+
+const escapesBrackets = text =>
+	text
+		.replace(/\(/g, '\\(')
+		.replace(/\)/g, '\\)')
+		.replace(/\（/g, '\\（')
+		.replace(/\）/g, '\\）')
 
 /**
  * @return {String} text from cursor selection
@@ -176,7 +183,7 @@ document.addEventListener('mouseup', e => {
 	if (jrpan_slctd_el && jrpan_slctd_el.length) {
 		Object.values(jrpan_slctd_el).map((e, i) => {
 			const el_parent = e.parentNode
-			const re = new RegExp(markup(e.innerText), 'g')
+			const re = new RegExp(escapesBrackets(markup(e.innerText)), 'g')
 			if (el_parent) {
 				el_parent.innerHTML = el_parent.innerHTML.replace(re, e.innerText)
 			}
@@ -187,9 +194,9 @@ document.addEventListener('mouseup', e => {
 
 	if (selected_text !== '') {
 		wholeText = e.target.innerHTML
-		const re = new RegExp(selected_text, 'g')
+		const re = new RegExp(escapesBrackets(selected_text), 'g')
 		e.target.innerHTML = wholeText.replace(re, markup(selected_text))
-		kuromojiMarkup(selected_text)
+		console.log(kuromojiMarkup(selected_text))
 		getTranslation(selected_text).then(res => {
 			fillPopup(res)
 			soundTxt(selected_text).then(setAudio)
