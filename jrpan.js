@@ -2,7 +2,23 @@ let selected_text
 let wholeText
 let jrpanActive = false
 
-console.log(tokenizer)
+/**
+ * @param {String} selected text
+ * @return {String} marked up from kuromoji.
+ */
+const kuromojiMarkup = selection => {
+	selection = selection
+		.replace(/\(/g, '\\(')
+		.replace(/\)/g, '\\)')
+		.replace(/\（/g, '\\（')
+		.replace(/\）/g, '\\）')
+	let path = tokenizer.tokenizeForSentence(selection)
+	return path
+		.map((e, i) => {
+			return `<span>${e.surface_form}</span>`
+		})
+		.join('')
+}
 
 /**
  * @return {String} text from cursor selection
@@ -18,7 +34,7 @@ let getSelectionText = () => {
 }
 
 /**
- * @param {String} selected text to markuup.
+ * @param {String} selected text to markup.
  * @return {String} marked up selection.
  */
 const markup = selection => `<b class="jrpan-selection">${selection}</b>`
@@ -173,6 +189,7 @@ document.addEventListener('mouseup', e => {
 		wholeText = e.target.innerHTML
 		const re = new RegExp(selected_text, 'g')
 		e.target.innerHTML = wholeText.replace(re, markup(selected_text))
+		kuromojiMarkup(selected_text)
 		getTranslation(selected_text).then(res => {
 			fillPopup(res)
 			soundTxt(selected_text).then(setAudio)
