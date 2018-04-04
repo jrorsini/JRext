@@ -1,15 +1,9 @@
 {
 	"name": "JRpan Extension",
 	"description": "JRpan based extension for japanese text tokenization.",
-	"version": "1.0",
+	"version": "1.1",
 	"manifest_version": 2,
-	"permissions": [
-		"tabs",
-		"activeTab",
-		"declarativeContent",
-		"http://*/*",
-		"https://*/*"
-	],
+	"permissions": ["tabs", "activeTab", "declarativeContent", "<all_urls>"],
 	"background": {
 		"scripts": ["background.js"],
 		"persistent": false
@@ -31,7 +25,7 @@
 	},
 	"content_scripts": [
 		{
-			"matches": ["https://*/*"],
+			"matches": ["<all_urls>"],
 			"js": [
 				"/content_scripts/kuromoji.js",
 				"/content_scripts/load-kuromoji.js",
@@ -41,9 +35,5 @@
 			]
 		}
 	],
-	"web_accessible_resources": [
-		"icon.png",
-		"dict",
-		"dict/*"
-	]
+	"web_accessible_resources": ["icon.png", "dict", "dict/*"]
 }
