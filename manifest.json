@@ -29,9 +29,15 @@
 		"48": "jrpan-icon48.png",
 		"128": "jrpan-icon128.png"
 	},
+	"content_scripts": [
+		{
+			"matches": ["https://*/*"],
+			"js": ["kuromoji.js", "load-kuromoji.js"]
+		}
+	],
 	"web_accessible_resources": [
 		"icon.png",
-		"dict/",
+		"dict",
 		"dict/*"
 	]
 }

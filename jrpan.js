@@ -2,6 +2,8 @@ let selected_text
 let wholeText
 let jrpanActive = false
 
+console.log(tokenizer)
+
 /**
  * @return {String} text from cursor selection
  */
@@ -20,15 +22,6 @@ let getSelectionText = () => {
  * @return {String} marked up selection.
  */
 const markup = selection => `<b class="jrpan-selection">${selection}</b>`
-
-console.log(kuromoji)
-
-kuromoji
-	.builder({ dicPath: chrome.extension.getURL('dict/') })
-	.build(function(err, tokenizer) {
-		var path = tokenizer.tokenize('すもももももももものうち')
-		console.log(path)
-	})
 
 /**
  * @param {string} Word from which we get audio ID
