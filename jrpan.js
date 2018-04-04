@@ -19,44 +19,16 @@ let getSelectionText = () => {
  * @param {String} selected text to markuup.
  * @return {String} marked up selection.
  */
-
 const markup = selection => `<b class="jrpan-selection">${selection}</b>`
 
-// console.log(kuromoji);
+console.log(kuromoji)
 
-// kuromoji.builder({ dicPath: './dict/' }).build(function(err, tokenizer) {
-// 	var path = tokenizer.tokenize('すもももももももものうち')
-// 	console.log(path)
-// })
-
-/**
- * @function inject text highlight selection new color
- */
-
-const addColorSelectionStyle = () => {
-	const css = `
-		::-moz-selection {
-			color: #fff;
-			background: #de559a;
-		}
-
-		::selection {
-			color: #fff;
-			background: #de559a;
-		}
-	`,
-		head = document.head || document.getElementsByTagName('head')[0],
-		style = document.createElement('style')
-
-	style.type = 'text/css'
-	if (style.styleSheet) {
-		style.styleSheet.cssText = css
-	} else {
-		style.appendChild(document.createTextNode(css))
-	}
-
-	head.appendChild(style)
-}
+kuromoji
+	.builder({ dicPath: chrome.extension.getURL('dict/') })
+	.build(function(err, tokenizer) {
+		var path = tokenizer.tokenize('すもももももももものうち')
+		console.log(path)
+	})
 
 /**
  * @param {string} Word from which we get audio ID
@@ -187,7 +159,7 @@ const setAudio = src => {
 }
 
 createElement()
-addColorSelectionStyle()
+// addColorSelectionStyle()
 
 document.addEventListener('mouseup', e => {
 	const jrpan_slctd_el = document.getElementsByClassName('jrpan-selection')

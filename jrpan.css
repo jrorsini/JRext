@@ -1,3 +1,13 @@
+::-moz-selection {
+    color: #fff;
+    background: #de559a;
+}
+
+::selection {
+    color: #fff;
+    background: #de559a;
+}
+
 #jrpan-block {
     position: fixed;
     right: 10px;
@@ -39,4 +49,8 @@
 
 audio#jrpan-sound {
     width: 200px;
+}
+
+body {
+    background: url(./icon.png);
 }

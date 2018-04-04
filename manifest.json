@@ -29,11 +29,9 @@
 		"48": "jrpan-icon48.png",
 		"128": "jrpan-icon128.png"
 	},
-	"content_scripts": [
-		{
-			"matches": ["https://*/*"],
-			"css": ["jrpan.css"]
-			// "js": ["jrpan.js"]
-		}
+	"web_accessible_resources": [
+		"icon.png",
+		"dict/",
+		"dict/*"
 	]
 }
