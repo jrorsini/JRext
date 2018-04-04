@@ -47,9 +47,9 @@ let getSelectionText = () => {
 const markup = selection => `<b class="jrpan-selection">${selection}</b>`
 
 /**
- * @param {string} Word from which we get audio ID
+ * @param {string} Word from which we get audio ID.
  * @promise Get word's sound's id.
- * @resolve {string} passed in word's sound's ID
+ * @resolve {string} passed in word's sound's ID.
  */
 const postSoundText = txt =>
 	new Promise((resolve, reject) => {
@@ -73,9 +73,9 @@ const postSoundText = txt =>
 	})
 
 /**
- * @param {string} word's audio's id
- * @promise Get word's sound's source location
- * @resolve {string} word's sound's source location
+ * @param {string} word's audio's id.
+ * @promise Get word's sound's source location.
+ * @resolve {string} word's sound's source location.
  */
 const getSoundTxt = id =>
 	new Promise((resolve, reject) => {
