@@ -180,7 +180,8 @@ createElement()
 document.addEventListener('mouseup', e => {
 	const jrpan_slctd_el = document.getElementsByClassName('jrpan-selection')
 
-	if (jrpan_slctd_el && jrpan_slctd_el.length) {
+	// Remove existing marked up words from jrpan.
+	if (jrpan_slctd_el) {
 		Object.values(jrpan_slctd_el).map((e, i) => {
 			const el_parent = e.parentNode
 			const re = new RegExp(escapesBrackets(markup(e.innerText)), 'g')

@@ -17,22 +17,22 @@
 	"browser_action": {
 		"default_popup": "popup.html",
 		"default_icon": {
-			"16": "jrpan-icon16.png",
-			"32": "jrpan-icon32.png",
-			"48": "jrpan-icon48.png",
-			"128": "jrpan-icon128.png"
+			"16": "icons/jrpan-icon16.png",
+			"32": "icons/jrpan-icon32.png",
+			"48": "icons/jrpan-icon48.png",
+			"128": "icons/jrpan-icon128.png"
 		}
 	},
 	"icons": {
-		"16": "jrpan-icon16.png",
-		"32": "jrpan-icon32.png",
-		"48": "jrpan-icon48.png",
-		"128": "jrpan-icon128.png"
+		"16": "icons/jrpan-icon16.png",
+		"32": "icons/jrpan-icon32.png",
+		"48": "icons/jrpan-icon48.png",
+		"128": "icons/jrpan-icon128.png"
 	},
 	"content_scripts": [
 		{
 			"matches": ["https://*/*"],
-			"js": ["kuromoji.js", "load-kuromoji.js"]
+			"js": ["content_scripts/kuromoji.js", "content_scripts/load-kuromoji.js"]
 		}
 	],
 	"web_accessible_resources": [
