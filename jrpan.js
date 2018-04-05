@@ -1,8 +1,12 @@
 /**
  * - TODO
- * x pure-function.js
  * x bold katakana words
  * x show every examples
+ */
+
+/**
+ * - DONE
+ * o pure-function.js
  */
 
 const createElement = () => {
