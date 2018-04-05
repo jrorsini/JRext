@@ -1,8 +1,8 @@
 const createElement = () => {
-	let node = document.createElement('div');
-	node.id = 'jrpan-block';
-	document.body.appendChild(node);
-};
+	let node = document.createElement('div')
+	node.id = 'jrpan-block'
+	document.body.appendChild(node)
+}
 
 /**
  * @param {object} fetched data from jisho's API.
@@ -23,59 +23,41 @@ const generateContentFromWord = data => {
 			</audio>
 		</div>
 		<button class="jrpan-btn">JRpan it</button>
-	`;
-};
+	`
+}
 
 /**
  * @param {string} data is the HTML to insert
  * @function that inject HTML markup for the bottom right block
  */
 const fillPopup = data => {
-	const jrpanBlockElement = document.getElementById('jrpan-block');
-	jrpanBlockElement.innerHTML = generateContentFromWord(data);
-};
+	const jrpanBlockElement = document.getElementById('jrpan-block')
+	jrpanBlockElement.innerHTML = generateContentFromWord(data)
+}
 
 /**
  * @param {string} audio file source.
  * @function set the audio file source and plays it.
  */
 const setAudio = src => {
-	const audio = document.getElementById('jrpan-sound');
-	audio.src = src;
-	audio.play();
-};
+	const audio = document.getElementById('jrpan-sound')
+	audio.src = src
+	audio.play()
+}
 
-createElement();
-// addColorSelectionStyle()
+createElement()
 
-document.addEventListener('mouseup', e => {
-	const jrpan_slctd_el = document.getElementsByClassName('jrpan-selection');
+kuromojiLoaded().then(msg => {
+	console.log(msg)
+	document.addEventListener('mouseup', e => {
+		selected_text = getSelectionText()
 
-	// Remove existing marked up words from jrpan.
-	if (jrpan_slctd_el) {
-		Object.values(jrpan_slctd_el).map((e, i) => {
-			const el_parent = e.parentNode;
-			const re = new RegExp(escapesBrackets(markup(e.innerText)), 'g');
-			if (el_parent) {
-				el_parent.innerHTML = el_parent.innerHTML.replace(re, e.innerText);
-			}
-		});
-	}
+		if (selected_text !== '') {
+			console.log(kuromojiMarkup(selected_text))
 
-	selected_text = getSelectionText();
-
-	if (selected_text !== '') {
-		wholeText = e.target.innerHTML;
-		const re = new RegExp(escapesBrackets(selected_text), 'g');
-		e.target.innerHTML = wholeText.replace(re, markup(selected_text));
-		console.log(kuromojiMarkup(selected_text));
-		// getTranslation(selected_text).then(res => {
-		// 	fillPopup(res);
-		// 	soundTxt(selected_text).then(setAudio);
-		// });
-	} else {
-		Object.values(jrpan_slctd_el).map((e, i) => {
-			e.innerHTML = e.innerHTML;
-		});
-	}
-});
+			whole_text = e.target.innerHTML
+			const re = new RegExp(escaped(selected_text), 'g')
+			e.target.innerHTML = whole_text.replace(re, markedUp(selected_text))
+		}
+	})
+})

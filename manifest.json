@@ -26,12 +26,14 @@
 	"content_scripts": [
 		{
 			"matches": ["<all_urls>"],
+			"css": ["jrpan.css"],
 			"js": [
 				"/content_scripts/kuromoji.js",
 				"/content_scripts/load-kuromoji.js",
 				"/content_scripts/vars.js",
 				"/content_scripts/functions.js",
-				"/content_scripts/promises.js"
+				"/content_scripts/promises.js",
+				"/jrpan.js"
 			]
 		}
 	],
