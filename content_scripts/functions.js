@@ -5,9 +5,16 @@
 const kuromojiMarkup = selection => {
 	let path = tokenizer.tokenizeForSentence(selection)
 	console.log(path)
+	path.map(e => {
+		if (part_of_speech[e.pos] === undefined) {
+			console.log(e.pos)
+		}
+	})
 	return path
 		.map((e, i) => {
-			return `<span>${e.surface_form}</span>`
+			return `<span class="${part_of_speech[e.pos]}-gloss">${
+				e.surface_form
+			}</span>`
 		})
 		.join('')
 }
@@ -22,6 +29,7 @@ const escaped = text =>
 		.replace(/\(/g, '\\(')
 		.replace(/\)/g, '\\)')
 		.replace(/\（/g, '\\（')
+		.replace(/\_/g, '\\_')
 		.replace(/\）/g, '\\）')
 
 /**
@@ -41,4 +49,4 @@ let getSelectionText = () => {
  * @param {String} selected text to markup.
  * @return {String} marked up selection.
  */
-const markedUp = selection => `<b class="jrpan-selection">${selection}</b>`
+const markedUp = selection => `<p class="jrpan-selection">${selection}</p>`

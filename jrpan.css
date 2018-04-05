@@ -41,9 +41,9 @@
 }
 
 .jrpan-selection {
-	background: -webkit-linear-gradient(#de559a, #fb92b1);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+	/* background: -webkit-linear-gradient(#de559a, #fb92b1); */
+	/* -webkit-background-clip: text; */
+	/* -webkit-text-fill-color: transparent; */
 	position: relative;
 }
 
@@ -54,41 +54,41 @@ audio#jrpan-sound {
 /* Glossed text style START */
 
 .verb-gloss {
-	-webkit-text-stroke-color: #4dd0e1;
+	color: #4dd0e1;
 }
 
 .noun-gloss {
-	-webkit-text-stroke-color: #673ab7;
+	color: #673ab7;
 }
 
 .suffix-gloss {
-	-webkit-text-stroke-color: #003a69;
+	color: #003a69;
 }
 
 .adverb-gloss {
-	-webkit-text-stroke-color: #fdd835;
+	color: #fdd835;
 }
 
 .general-gloss {
-	-webkit-text-stroke-color: #757575;
+	color: #757575;
 }
 
 .adjective-gloss {
-	-webkit-text-stroke-color: #43a047;
+	color: #43a047;
 }
 
 .conjuction-gloss {
-	-webkit-text-stroke-color: #e65100;
+	color: #e65100;
 }
 
 .interjection-gloss {
-	-webkit-text-stroke-color: #f48fb1;
+	color: #f48fb1;
 }
 
 .auxiliaryVerb-gloss {
-	-webkit-text-stroke-color: #4db6ac;
+	color: #4db6ac;
 }
 
 .adnominalAdjective-gloss {
-	-webkit-text-stroke-color: #fb8c00;
+	color: #fb8c00;
 }

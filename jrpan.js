@@ -49,7 +49,7 @@ const setAudio = src => {
  * @return inner HTML without marked up jrpan Selection
  */
 const removeMarkedUpText = (jrpan_selection, inner_html) => {
-	const re = new RegExp(markedUp(jrpan_selection), 'g')
+	const re = new RegExp(markedUp(kuromojiMarkup(jrpan_selection)), 'g')
 	return inner_html.replace(re, jrpan_selection)
 }
 
@@ -61,18 +61,22 @@ kuromojiLoaded().then(msg => {
 		jrpan_selection = document.querySelector('.jrpan-selection')
 		selected_text = getSelectionText()
 		whole_text = e.target.innerHTML
-
-		//Checks if there is already a text selected in the page
-		if (jrpan_selection) {
-			e.target.innerHTML = removeMarkedUpText(
-				jrpan_selection.innerHTML,
-				whole_text
-			)
-		}
-
 		if (selected_text !== '') {
+			//Checks if there is already a text selected in the page
+			if (jrpan_selection) {
+				e.target.innerHTML = removeMarkedUpText(
+					jrpan_selection.innerHTML,
+					whole_text
+				)
+			}
+
+			console.log(kuromojiMarkup(selected_text))
+
 			const re = new RegExp(escaped(selected_text), 'g')
-			e.target.innerHTML = whole_text.replace(re, markedUp(selected_text))
+			e.target.innerHTML = whole_text.replace(
+				re,
+				markedUp(kuromojiMarkup(selected_text))
+			)
 		}
 	})
 })
