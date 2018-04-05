@@ -1,3 +1,8 @@
+/*
+TODO
+
+
+*/
 const createElement = () => {
 	let node = document.createElement('div')
 	node.id = 'jrpan-block'
@@ -69,8 +74,6 @@ kuromojiLoaded().then(msg => {
 					whole_text
 				)
 			}
-
-			console.log(kuromojiMarkup(selected_text))
 
 			const re = new RegExp(escaped(selected_text), 'g')
 			e.target.innerHTML = whole_text.replace(

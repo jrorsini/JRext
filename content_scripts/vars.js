@@ -7,5 +7,8 @@ let part_of_speech = {
 	副詞: 'adverb',
 	助詞: 'particle',
 	助動詞: 'auxiliaryVerb​',
-	接頭詞: 'prefix'
+	接頭詞: 'prefix',
+	接続詞: 'conjuction',
+	形容詞: 'i-adjective',
+	連体詞: 'abdominalAdj'
 }
