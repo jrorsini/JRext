@@ -1,3 +1,10 @@
+/**
+ * - TODO
+ * x pure-function.js
+ * x bold katakana words
+ * x show every examples
+ */
+
 const createElement = () => {
 	let node = document.createElement('div')
 	node.id = 'jrpan-block'
