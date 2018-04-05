@@ -1,8 +1,3 @@
-/*
-TODO
-
-
-*/
 const createElement = () => {
 	let node = document.createElement('div')
 	node.id = 'jrpan-block'

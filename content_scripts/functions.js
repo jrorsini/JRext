@@ -9,20 +9,23 @@ const kuromojiMarkup = selection => {
 			console.log(e.pos)
 		}
 	})
-	return path.map((e, i) => generateMarkup(e)).join('')
+	return path.map(generateMarkup).join('')
 }
 
+/**
+ * @param {Object} word's object
+ * @return {String} Marked up word
+ */
 const generateMarkup = word => {
-	return `<span class="${part_of_speech[word.pos]}-gloss">
-		${word.surface_form}
-	</span>`
+	return `<span class="${part_of_speech[word.pos]}-gloss">${
+		word.surface_form
+	}</span>`
 }
 
 /**
  * @param {String} text selected
  * @return {String} text with brackets escaped
  */
-
 const escaped = text =>
 	text
 		.replace(/\(/g, '\\(')

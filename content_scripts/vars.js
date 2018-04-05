@@ -11,5 +11,6 @@ let part_of_speech = {
 	接続詞: 'conjuction',
 	形容詞: 'i-adjective',
 	連体詞: 'abdominalAdj',
-	感動詞: 'interjection'
+	感動詞: 'interjection',
+	フィラー: 'filler'
 }
