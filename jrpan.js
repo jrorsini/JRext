@@ -51,7 +51,7 @@ kuromojiLoaded().then(msg => {
 	console.log(msg)
 	document.addEventListener('mouseup', e => {
 		jrpan_selection = document.querySelector('.jrpan-selection')
-		selected_text = getSelectionText()
+_		selected_text = getSelectionText()
 		whole_text = e.target.innerHTML
 
 		//Checks if there is already a text selected in the page
