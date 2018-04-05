@@ -50,12 +50,18 @@ createElement()
 kuromojiLoaded().then(msg => {
 	console.log(msg)
 	document.addEventListener('mouseup', e => {
+		jrpan_selection = document.querySelector('.jrpan-selection')
 		selected_text = getSelectionText()
+		whole_text = e.target.innerHTML
+
+		//Checks if there is already a text selected in the page
+		if (jrpan_selection) {
+			//if there is remove it
+			const re = new RegExp(escaped(markedUp(jrpan_selection.innerText)), 'g')
+			e.target.innerHTML = whole_text.replace(re, jrpan_selection.innerText)
+		}
 
 		if (selected_text !== '') {
-			console.log(kuromojiMarkup(selected_text))
-
-			whole_text = e.target.innerHTML
 			const re = new RegExp(escaped(selected_text), 'g')
 			e.target.innerHTML = whole_text.replace(re, markedUp(selected_text))
 		}
