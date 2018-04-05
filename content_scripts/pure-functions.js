@@ -22,11 +22,11 @@ const markedUp = selection => `<p class="jrpan-selection">${selection}</p>`
  * @return {String} Marked up word
  */
 const generateMarkup = word =>
-	isKatakana(word)
-		? `<span class="jrpan-gloss-tag ${part_of_speech[word.pos]}-gloss">${
+	isKatakana(word.surface_form)
+		? `<span class="jrpan-gloss-tag katakana-gloss">${word.surface_form}</span>`
+		: `<span class="jrpan-gloss-tag ${part_of_speech[word.pos]}-gloss">${
 				word.surface_form
 		  }</span>`
-		: `<b class="${part_of_speech[word.pos]}-gloss">${word.surface_form}</b>`
 
 /**
  * @param {String} text selected
@@ -54,8 +54,7 @@ const isSelectable = selection =>
  * @return {Boolean} if the word is only made out of Katakana.
  */
 
-const isKatakana = word => {
+const isKatakana = word =>
 	word.match(/[\u30A0-\u30FF]/g)
 		? word.match(/[\u30A0-\u30FF]/g).length === word.length
 		: false
-}

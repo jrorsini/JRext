@@ -1,16 +1,16 @@
 let selected_text
 let whole_text
 const part_of_speech = {
-	–¼Œ: 'noun',
-	“®Œ: 'verb',
-	‹L†: 'symbol',
-	•›Œ: 'adverb',
-	•Œ: 'particle',
-	•“®Œ: 'auxiliaryVerb',
-	Ú“ªŒ: 'prefix',
-	Ú‘±Œ: 'conjuction',
-	Œ`—eŒ: 'i-adjective',
-	˜A‘ÌŒ: 'abdominalAdj',
-	Š´“®Œ: 'interjection',
-	ƒtƒBƒ‰[: 'filler'
+	åè©: 'noun',
+	å‹•è©: 'verb',
+	è¨˜å·: 'symbol',
+	å‰¯è©: 'adverb',
+	åŠ©è©: 'particle',
+	åŠ©å‹•è©: 'auxiliaryVerb',
+	æ¥é ­è©: 'prefix',
+	æ¥ç¶šè©: 'conjuction',
+	å½¢å®¹è©: 'i-adjective',
+	é€£ä½“è©: 'abdominalAdj',
+	æ„Ÿå‹•è©: 'interjection',
+	ãƒ•ã‚£ãƒ©ãƒ¼: 'filler'
 }

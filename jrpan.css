@@ -113,3 +113,8 @@ audio#jrpan-sound {
 .auxiliaryVerb-gloss {
 	color: #4db6ac;
 }
+
+.katakana-gloss {
+	font-weight: bold;
+	color: #274055;
+}
