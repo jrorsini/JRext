@@ -61,7 +61,7 @@ kuromojiLoaded().then(msg => {
 		jrpan_selection = document.querySelector('.jrpan-selection')
 		selected_text = getSelectionText()
 		whole_text = e.target.innerHTML
-		if (selected_text !== '') {
+		if (selected_text.trim() !== '') {
 			//Checks if there is already a text selected in the page
 			if (jrpan_selection) {
 				e.target.innerHTML = removeMarkedUpText(
