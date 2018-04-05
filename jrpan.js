@@ -75,6 +75,11 @@ kuromojiLoaded().then(msg => {
 				re,
 				markedUp(kuromojiMarkup(selected_text))
 			)
+			document.getElementsByClassName('jrpan-gloss-tag').map(tagEl => {
+				tagEl.addEventListener('click', e => {
+					console.log(e.target)
+				})
+			})
 		}
 	})
 })

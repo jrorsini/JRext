@@ -17,7 +17,7 @@ const kuromojiMarkup = selection => {
  * @return {String} Marked up word
  */
 const generateMarkup = word => {
-	return `<span class="${part_of_speech[word.pos]}-gloss">${
+	return `<span class="jrpan-gloss-tag ${part_of_speech[word.pos]}-gloss">${
 		word.surface_form
 	}</span>`
 }
