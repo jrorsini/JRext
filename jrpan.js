@@ -53,6 +53,18 @@ const removeMarkedUpText = (jrpan_selection, inner_html) => {
 	return inner_html.replace(re, jrpan_selection)
 }
 
+/**
+ * @param {String} word to display
+ * @function Combine promises and functions interacting with the DOM in order to
+ */
+
+const showWord = word => {
+	getTranslation(word).then(res => {
+		fillPopup(res)
+		soundTxt(word).then(setAudio)
+	})
+}
+
 createElement()
 
 kuromojiLoaded().then(msg => {
@@ -75,11 +87,13 @@ kuromojiLoaded().then(msg => {
 				re,
 				markedUp(kuromojiMarkup(selected_text))
 			)
-			document.getElementsByClassName('jrpan-gloss-tag').map(tagEl => {
-				tagEl.addEventListener('click', e => {
-					console.log(e.target)
-				})
-			})
+			Object.values(document.getElementsByClassName('jrpan-gloss-tag')).map(
+				tagEl => {
+					tagEl.addEventListener('click', e => {
+						showWord(e.target.innerHTML)
+					})
+				}
+			)
 		}
 	})
 })
