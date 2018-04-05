@@ -1,107 +1,115 @@
 ::-moz-selection {
-    color: #fff;
-    background: #de559a;
+	color: #fff;
+	background: #de559a;
 }
 
 ::selection {
-    color: #fff;
-    background: #de559a;
+	color: #fff;
+	background: #de559a;
 }
 
 #jrpan-block {
-    position: fixed;
-    right: 10px;
-    bottom: 10px;
-    z-index: 999;
+	position: fixed;
+	right: 10px;
+	bottom: 10px;
+	z-index: 999;
 }
 
 .jrpan-popup {
-    position: absolute;
-    bottom: 50px;
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
-    padding: 10px;
-    background: #fff;
-    width: 200px;
-    right: 0;
-    border-radius: 3px;
+	position: absolute;
+	bottom: 50px;
+	box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+	padding: 10px;
+	background: #fff;
+	width: 200px;
+	right: 0;
+	border-radius: 3px;
 }
 
 .jrpan-btn {
-    display: inline-block;
-    -webkit-appearance: none;
-    background: -webkit-linear-gradient(#de559a, #fb92b1);
-    color: #fff;
-    font-size: 20px;
-    border: none;
-    border-radius: 5px;
-    width: 120px;
-    height: 40px;
-    cursor: pointer;
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+	display: inline-block;
+	-webkit-appearance: none;
+	background: -webkit-linear-gradient(#de559a, #fb92b1);
+	color: #fff;
+	font-size: 20px;
+	border: none;
+	border-radius: 5px;
+	width: 120px;
+	height: 40px;
+	cursor: pointer;
+	box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 .jrpan-selection {
-    /* background: -webkit-linear-gradient(#de559a, #fb92b1); */
-    /* -webkit-background-clip: text; */
-    /* -webkit-text-fill-color: transparent; */
-    position: relative;
-    display: inline;
+	/* background: -webkit-linear-gradient(#de559a, #fb92b1); */
+	/* -webkit-background-clip: text; */
+	/* -webkit-text-fill-color: transparent; */
+	position: relative;
+	display: inline;
 }
 
 .jrpan-selection span {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .jrpan-selection span:hover {
-    text-decoration: underline;
+	text-decoration: underline;
 }
 
 audio#jrpan-sound {
-    width: 200px;
+	width: 200px;
 }
 
 /* Glossed text style START */
 
 .verb-gloss {
-    color: #4dd0e1;
+	color: #4dd0e1;
 }
 
 .noun-gloss {
-    color: #673ab7;
+	color: #8958dd;
 }
 
 .suffix-gloss {
-    color: #003a69;
+	color: #003a69;
+}
+
+.prefix-gloss {
+	color: #7600ad;
 }
 
 .adverb-gloss {
-    color: #fdd835;
+	color: #fdd835;
 }
 
 .general-gloss {
-    color: #757575;
+	color: #757575;
 }
 
 .adjective-gloss {
-    color: #43a047;
+	color: #43a047;
+}
+
+.particle-gloss {
+	color: rgb(175, 37, 106);
 }
 
 .i-adjective-gloss {
-    color: #fb8c00;
+	color: #fb8c00;
 }
 
 .conjuction-gloss {
-    color: #e65100;
+	color: #e65100;
 }
 
 .abdominalAdj-gloss {
-    color: red;
+	color: red;
 }
 
 .interjection-gloss {
-    color: #f48fb1;
+	color: #f48fb1;
 }
 
 .auxiliaryVerb-gloss {
-    color: #4db6ac;
+	color: #4db6ac;
 }

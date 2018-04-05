@@ -4,19 +4,18 @@
  */
 const kuromojiMarkup = selection => {
 	let path = tokenizer.tokenizeForSentence(selection)
-	console.log(path)
 	path.map(e => {
 		if (part_of_speech[e.pos] === undefined) {
 			console.log(e.pos)
 		}
 	})
-	return path
-		.map((e, i) => {
-			return `<span class="${part_of_speech[e.pos]}-gloss">${
-				e.surface_form
-			}</span>`
-		})
-		.join('')
+	return path.map((e, i) => generateMarkup(e)).join('')
+}
+
+const generateMarkup = word => {
+	return `<span class="${part_of_speech[word.pos]}-gloss">
+		${word.surface_form}
+	</span>`
 }
 
 /**
