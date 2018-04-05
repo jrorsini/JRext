@@ -2,15 +2,18 @@
 
 /**
  * - TODO
- * x checks if word is katakana
- * x bold katakana words
  * x show every examples
+ * x Check if word is only made of romaji
+ * x Check if word is only made of numbers
+ * x bold words that don7t contian kanjis or hiragana
  */
 
 /**
  * - DONE
- * o pure-function.js
- * o checks if selection contains japanese characters.
+ * o| pure-function.js
+ * o| checks if selection contains japanese characters.
+ * o| bold katakana words
+ * o| checks if word is katakana
  */
 
 const createElement = () => {
