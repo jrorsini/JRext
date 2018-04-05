@@ -4,18 +4,18 @@
  */
 const generateMarkup = word => {
 	const part_of_speech = {
-		–¼Œ: 'noun',
-		“®Œ: 'verb',
-		‹L†: 'symbol',
-		•›Œ: 'adverb',
-		•Œ: 'particle',
-		•“®Œ: 'auxiliaryVerb',
-		Ú“ªŒ: 'prefix',
-		Ú‘±Œ: 'conjuction',
-		Œ`—eŒ: 'i-adjective',
-		˜A‘ÌŒ: 'abdominalAdj',
-		Š´“®Œ: 'interjection',
-		ƒtƒBƒ‰[: 'filler'
+		åè©: 'noun',
+		å‹•è©: 'verb',
+		è¨˜å·: 'symbol',
+		å‰¯è©: 'adverb',
+		åŠ©è©: 'particle',
+		åŠ©å‹•è©: 'auxiliaryVerb',
+		æ¥é ­è©: 'prefix',
+		æ¥ç¶šè©: 'conjuction',
+		å½¢å®¹è©: 'i-adjective',
+		é€£ä½“è©: 'abdominalAdj',
+		æ„Ÿå‹•è©: 'interjection',
+		ãƒ•ã‚£ãƒ©ãƒ¼: 'filler'
 	}
 	return `<span class="jrpan-gloss-tag ${part_of_speech[word.pos]}-gloss">${
 		word.surface_form
@@ -30,9 +30,9 @@ const escaped = text =>
 	text
 		.replace(/\(/g, '\\(')
 		.replace(/\)/g, '\\)')
-		.replace(/\i/g, '\\i')
+		.replace(/\ï¼ˆ/g, '\\ï¼ˆ')
 		.replace(/\_/g, '\\_')
-		.replace(/\j/g, '\\j')
+		.replace(/\ï¼‰/g, '\\ï¼‰')
 
 /**
  * @return {String} text from cursor selection
@@ -52,3 +52,23 @@ let getSelectionText = () => {
  * @return {String} marked up selection.
  */
 const markedUp = selection => `<p class="jrpan-selection">${selection}</p>`
+
+/**
+ * @param {String} Selection.
+ * @return {Boolean} contains any Japanese character.
+ */
+
+const isSelectable = selection =>
+	selection.trim() !== '' &&
+	selection.match(/[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF]/g) !== null
+
+/**
+ * @param {String} word
+ * @return {Boolean} if the word is only made out of Katakana.
+ */
+
+const isKatakana = word => {
+	word.match(/[\u30A0-\u30FF]/g)
+		? word.match(/[\u30A0-\u30FF]/g).length === word.length
+		: false
+}

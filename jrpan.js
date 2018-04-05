@@ -1,5 +1,8 @@
+// https://gist.github.com/ryanmcgrath/982242
+
 /**
  * - TODO
+ * x checks if word is katakana
  * x bold katakana words
  * x show every examples
  */
@@ -7,6 +10,7 @@
 /**
  * - DONE
  * o pure-function.js
+ * o checks if selection contains japanese characters.
  */
 
 const createElement = () => {
@@ -66,7 +70,7 @@ kuromojiLoaded().then(msg => {
 		jrpan_selection = document.querySelector('.jrpan-selection')
 		selected_text = getSelectionText()
 		whole_text = e.target.innerHTML
-		if (selected_text.trim() !== '') {
+		if (isSelectable(selected_text)) {
 			//Checks if there is already a text selected in the page
 			if (jrpan_selection) {
 				e.target.innerHTML = removeMarkedUpText(
