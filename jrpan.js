@@ -44,6 +44,14 @@ const setAudio = src => {
 	audio.src = src
 	audio.play()
 }
+/**
+ * @param {String, String} Jrpan marked up element inner text, outer html
+ * @return inner HTML without marked up jrpan Selection
+ */
+const removeMarkedUpText = (jrpan_selection, inner_html) => {
+	const re = new RegExp(markedUp(jrpan_selection), 'g')
+	return inner_html.replace(re, jrpan_selection)
+}
 
 createElement()
 
@@ -51,14 +59,15 @@ kuromojiLoaded().then(msg => {
 	console.log(msg)
 	document.addEventListener('mouseup', e => {
 		jrpan_selection = document.querySelector('.jrpan-selection')
-_		selected_text = getSelectionText()
+		selected_text = getSelectionText()
 		whole_text = e.target.innerHTML
 
 		//Checks if there is already a text selected in the page
 		if (jrpan_selection) {
-			//if there is remove it
-			const re = new RegExp(escaped(markedUp(jrpan_selection.innerText)), 'g')
-			e.target.innerHTML = whole_text.replace(re, jrpan_selection.innerText)
+			e.target.innerHTML = removeMarkedUpText(
+				jrpan_selection.innerHTML,
+				whole_text
+			)
 		}
 
 		if (selected_text !== '') {
