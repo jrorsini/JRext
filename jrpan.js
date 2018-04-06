@@ -25,15 +25,15 @@
 const generateContentFromWord = data => {
 	return `
 		<div class="jrpan-popup">
+			<audio controls id="jrpan-sound">
+				<source src="" type="audio/mpeg">
+			</audio>
 			${
 				data['japanese'][0]['word']
 					? `<small>${data['japanese'][0]['word']}</small>`
 					: ''
 			}
 			<p><b>${data['japanese'][0]['reading']}</b></p>
-			<audio controls id="jrpan-sound">
-				<source src="" type="audio/mpeg">
-			</audio>
 			<ul class="jrpan-words-definition">
 			${data['senses']
 				.map(e => {
