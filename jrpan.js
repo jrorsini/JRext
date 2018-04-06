@@ -2,7 +2,6 @@
 
 /**
  * - TODO
- * x show every examples.
  * x Check if word is only made of romaji.
  * x Check if word is only made of numbers.
  * x bold words that don't contian kanjis or hiragana.
@@ -15,6 +14,7 @@
  * o| checks if selection contains japanese characters.
  * o| bold katakana words
  * o| checks if word is katakana
+ * o| show every examples.
  */
 
 const createElement = () => {
@@ -36,7 +36,18 @@ const generateContentFromWord = data => {
 					: ''
 			}
 			<p><b>${data['japanese'][0]['reading']}</b></p>
-			<i>${data['senses'][0]['english_definitions'].join(', ')}</i>
+			<ul>
+			${data['senses']
+				.map(e => {
+					return `
+						<li>
+							<small><u><i>${e['parts_of_speech'].map(e => e).join(', ')}</i></u></small>
+							${e['english_definitions']}
+						</li>
+					`
+				})
+				.join('')}
+			<ul/>
 			<audio controls id="jrpan-sound">
 				<source src="" type="audio/mpeg">
 			</audio>

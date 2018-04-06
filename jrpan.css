@@ -26,6 +26,20 @@
 	border-radius: 3px;
 }
 
+.jrpan-popup ul {
+	margin-top: 10px;
+	list-style: none;
+}
+
+.jrpan-popup li {
+	padding: 10px 0;
+	border-top: 1px solid #ccc;
+}
+
+.jrpan-popup li:first-child {
+	border-top: none;
+}
+
 .jrpan-btn {
 	display: inline-block;
 	-webkit-appearance: none;

@@ -67,7 +67,14 @@ const getTranslation = word =>
 		xhr.send()
 		xhr.onreadystatechange = () => {
 			if (xhr.readyState === 4) {
-				resolve(JSON.parse(xhr.responseText)['data'][0])
+				const dataTemp = JSON.parse(xhr.responseText)['data'].filter(
+					e => e['is_common']
+				)
+				const res = JSON.parse(xhr.responseText)['data']
+					? JSON.parse(xhr.responseText)['data'][0]
+					: 'nothing found'
+				console.log(res)
+				resolve(res)
 			} else if (xhr.status !== 200) {
 				reject(xhr.responseText)
 			}
