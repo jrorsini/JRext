@@ -19,11 +19,12 @@ let getSelectionText = () => {
 }
 
 /**
+ * @param {String} element's ID
  * @function add jrpan-block to document's body.
  */
-const createElement = () => {
+const createElement = id => {
 	const node = document.createElement('div')
-	node.id = 'jrpan-block'
+	node.id = id
 	document.body.appendChild(node)
 }
 

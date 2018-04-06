@@ -72,7 +72,7 @@ const showWord = word => {
 	})
 }
 
-createElement()
+createElement('jrpan-block')
 
 kuromojiLoaded().then(msg => {
 	console.log(msg)
