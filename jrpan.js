@@ -3,6 +3,7 @@
 /**
  * - TODO
  * x japanesePod101 font-size and line-height to fix.
+ * x sort out code (re-usable vs not re-usable)
  */
 
 /**
