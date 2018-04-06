@@ -2,12 +2,12 @@
 
 /**
  * - TODO
- * x close popup definition
  * x japanesePod101 font-size and line-height to fix.
  */
 
 /**
  * - DONE
+ * o| close popup definition
  * o| side out words that don't contain kanjis or hiragana.
  * o| Check if word is only made of romaji.
  * o| Check if word is only made of numbers.
