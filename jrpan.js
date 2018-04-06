@@ -2,8 +2,8 @@
 
 /**
  * - TODO
- * x japanesePod101 font-size and line-height to fix.
  * x close popup definition
+ * x japanesePod101 font-size and line-height to fix.
  */
 
 /**
@@ -48,7 +48,7 @@ const generateContentFromWord = data => {
 									`
 									: ``
 							}
-							${e['english_definitions']}
+							${e['english_definitions'].join(', ')}
 						</li>
 					`
 				})
