@@ -19,6 +19,25 @@ const kuromojiMarkup = selection => {
 const fillPopup = data => {
 	const jrpanBlockElement = document.getElementById('jrpan-block')
 	jrpanBlockElement.innerHTML = generateContentFromWord(data)
+	document.querySelector('.jrpan-btn').addEventListener('click', e => {
+		console.log(document.querySelector('.jrpan-popup').classList)
+		if (
+			document
+				.querySelector('.jrpan-popup')
+				.classList.value.split(/\s/g)
+				.indexOf('jrpan-popup--hidden')
+		) {
+			console.log('show it')
+			document
+				.querySelector('.jrpan-popup')
+				.classList.remove('jrpan-popup--hidden')
+		} else {
+			console.log('hide it')
+			document
+				.querySelector('.jrpan-popup')
+				.classList.add('jrpan-popup--hidden')
+		}
+	})
 }
 
 /**
