@@ -6,6 +6,7 @@
  * x Check if word is only made of numbers.
  * x bold words that don't contian kanjis or hiragana.
  * x japanesePod101 font-size and line-height to fix.
+ * x close popup definition
  */
 
 /**
@@ -41,7 +42,15 @@ const generateContentFromWord = data => {
 				.map(e => {
 					return `
 						<li>
-							<small><u><i>${e['parts_of_speech'].map(e => e).join(', ')}</i></u></small>
+							${
+								e['parts_of_speech']
+									? `
+									<small><u><i>
+										${e['parts_of_speech'].map(e => e).join(', ')}
+									</i></u></small><br/>
+									`
+									: ``
+							}
 							${e['english_definitions']}
 						</li>
 					`
