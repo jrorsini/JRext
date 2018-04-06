@@ -7,11 +7,9 @@ const getSoundTxt = id =>
 	new Promise((resolve, reject) => {
 		var xhr = new XMLHttpRequest()
 		xhr.open('GET', `https://api.soundoftext.com/sounds/${id}`, true)
-
 		xhr.onload = () => {
 			resolve(JSON.parse(xhr.response).location)
 		}
-
 		xhr.send()
 	})
 

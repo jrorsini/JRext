@@ -1,3 +1,10 @@
+/*
+|--------------------------------------------------------------------------
+| Functions to get the sound of any word past in.
+|--------------------------------------------------------------------------
+|
+*/
+
 /**
  * @param {string} word
  * @promise Get word's sound's source location
