@@ -2,27 +2,21 @@
 
 /**
  * - TODO
- * x Check if word is only made of romaji.
- * x Check if word is only made of numbers.
- * x bold words that don't contian kanjis or hiragana.
  * x japanesePod101 font-size and line-height to fix.
  * x close popup definition
  */
 
 /**
  * - DONE
+ * o| side out words that don't contain kanjis or hiragana.
+ * o| Check if word is only made of romaji.
+ * o| Check if word is only made of numbers.
  * o| pure-function.js
  * o| checks if selection contains japanese characters.
  * o| bold katakana words
  * o| checks if word is katakana
  * o| show every examples.
  */
-
-const createElement = () => {
-	let node = document.createElement('div')
-	node.id = 'jrpan-block'
-	document.body.appendChild(node)
-}
 
 /**
  * @param {object} fetched data from jisho's API.
