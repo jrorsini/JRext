@@ -61,15 +61,6 @@ const generateContentFromWord = data => {
 }
 
 /**
- * @param {String, String} Jrpan marked up element inner text, outer html
- * @return inner HTML without marked up jrpan Selection
- */
-const removeMarkedUpText = (jrpan_selection, inner_html) => {
-	const re = new RegExp(markedUp(kuromojiMarkup(jrpan_selection)), 'g')
-	return inner_html.replace(re, jrpan_selection)
-}
-
-/**
  * @param {String} word to display
  * @function Combine promises and functions interacting with the DOM in order to
  */
