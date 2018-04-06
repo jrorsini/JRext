@@ -2,10 +2,11 @@
 
 /**
  * - TODO
- * x show every examples
- * x Check if word is only made of romaji
- * x Check if word is only made of numbers
- * x bold words that don7t contian kanjis or hiragana
+ * x show every examples.
+ * x Check if word is only made of romaji.
+ * x Check if word is only made of numbers.
+ * x bold words that don't contian kanjis or hiragana.
+ * x japanesePod101 font-size and line-height to fix.
  */
 
 /**

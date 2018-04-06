@@ -1,6 +1,6 @@
 /**
  * @param {String} selected text
- * @return {String} marked up from kuromoji.
+ * @return {String} marked up selected text from kuromoji's tokenizer.
  */
 const kuromojiMarkup = selection => {
 	let path = tokenizer.tokenizeForSentence(selection)
