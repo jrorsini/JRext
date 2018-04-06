@@ -3,8 +3,6 @@
 | Functions that interact with the DOM.
 |--------------------------------------------------------------------------
 |
-| Gathers the functions that interact with the dom
-|
 */
 
 /**

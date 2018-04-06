@@ -13,22 +13,27 @@ const kuromojiMarkup = selection => {
 }
 
 /**
+ * @function Toggles class name for jrpan popup when clicking on it.
+ */
+const toggleJrpanPopup = () => {
+	const jrpanPopupElement = document.querySelector('.jrpan-popup')
+	jrpanPopupElement.classList.value
+		.split(/\s/g)
+		.indexOf('jrpan-popup--hidden') !== -1
+		? jrpanPopupElement.classList.remove('jrpan-popup--hidden')
+		: jrpanPopupElement.classList.add('jrpan-popup--hidden')
+}
+
+/**
  * @param {string} data is the HTML to insert
  * @function that inject HTML markup for the bottom right block
  */
 const fillPopup = data => {
 	const jrpanBlockElement = document.getElementById('jrpan-block')
 	jrpanBlockElement.innerHTML = generateContentFromWord(data)
-	document.querySelector('.jrpan-btn').addEventListener('click', e => {
-		// toggle Event for hidding or Showing Elements.
-		console.log(document.querySelector('.jrpan-popup').classList)
-		const jrpanPopupElement = document.querySelector('.jrpan-popup')
-		jrpanPopupElement.classList.value
-			.split(/\s/g)
-			.indexOf('jrpan-popup--hidden') !== -1
-			? jrpanPopupElement.classList.remove('jrpan-popup--hidden')
-			: jrpanPopupElement.classList.add('jrpan-popup--hidden')
-	})
+	document
+		.querySelector('.jrpan-btn')
+		.addEventListener('click', toggleJrpanPopup)
 }
 
 /**
