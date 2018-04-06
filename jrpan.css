@@ -21,9 +21,14 @@
 	box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
 	padding: 10px;
 	background: #fff;
-	width: 200px;
+	width: 220px;
 	right: 0;
 	border-radius: 3px;
+}
+
+.jrpan-words-definition {
+	max-height: 300px;
+	overflow: scroll;
 }
 
 .jrpan-popup ul {

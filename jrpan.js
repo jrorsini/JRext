@@ -31,7 +31,7 @@ const generateContentFromWord = data => {
 					: ''
 			}
 			<p><b>${data['japanese'][0]['reading']}</b></p>
-			<ul>
+			<ul class="jrpan-words-definition">
 			${data['senses']
 				.map(e => {
 					return `
