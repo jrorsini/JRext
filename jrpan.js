@@ -37,7 +37,7 @@ const generateContentFromWord = data => {
 					return `
 						<li>
 							${
-								e['parts_of_speech']
+								e['parts_of_speech'] && e['parts_of_speech'].length > 0
 									? `
 									<small><u><i>
 										${e['parts_of_speech'].map(e => e).join(', ')}
