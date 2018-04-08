@@ -1,7 +1,7 @@
 {
-	"name": "JRpan Extension",
-	"description": "JRpan based extension for japanese text tokenization.",
-	"version": "1.1",
+	"name": "JRpan",
+	"description": "Tired reading Japanese text, JRpan it!",
+	"version": "0.0.1",
 	"manifest_version": 2,
 	"permissions": ["tabs", "activeTab", "declarativeContent", "<all_urls>"],
 	"background": {
