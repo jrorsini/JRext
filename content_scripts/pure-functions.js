@@ -9,24 +9,24 @@
  * @return {String} text from cursor selection
  */
 let getSelectionText = () => {
-	let text = ''
+	let text = '';
 	if (window.getSelection) {
-		text = window.getSelection().toString()
+		text = window.getSelection().toString();
 	} else if (document.selection && document.selection.type != 'Control') {
-		text = document.selection.createRange().text
+		text = document.selection.createRange().text;
 	}
-	return text
-}
+	return text;
+};
 
 /**
  * @param {String} element's ID
  * @function add jrpan-block to document's body.
  */
 const createElement = id => {
-	const node = document.createElement('div')
-	node.id = id
-	document.body.appendChild(node)
-}
+	const node = document.createElement('div');
+	node.id = id;
+	document.body.appendChild(node);
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -45,13 +45,13 @@ const escaped = text =>
 		.replace(/\)/g, '\\)')
 		.replace(/\）/g, '\\）')
 		.replace(/\（/g, '\\（')
-		.replace(/\_/g, '\\_')
+		.replace(/\_/g, '\\_');
 
 /**
  * @param {String} selected text to markup.
  * @return {String} marked up selection.
  */
-const markedUp = selection => `<p class="jrpan-selection">${selection}</p>`
+const markedUp = selection => `<p class="jrpan-selection">${selection}</p>`;
 
 /**
  * @param {Object} word's object
@@ -60,22 +60,20 @@ const markedUp = selection => `<p class="jrpan-selection">${selection}</p>`
 const generateMarkup = word =>
 	hasjapaneseCharacter(word.surface_form)
 		? isKatakana(word.surface_form)
-			? `<span class="jrpan-gloss-tag katakana-gloss">${
+			? `<div class="jrpan-gloss-tag katakana-gloss">${word.surface_form}</div>`
+			: `<div class="jrpan-gloss-tag ${part_of_speech[word.pos]}-gloss">${
 					word.surface_form
-			  }</span>`
-			: `<span class="jrpan-gloss-tag ${part_of_speech[word.pos]}-gloss">${
-					word.surface_form
-			  }</span>`
-		: `<span>${word.surface_form}</span>`
+			  }</div>`
+		: `<div>${word.surface_form}</div>`;
 
 /**
  * @param {String, String} Jrpan marked up element inner text, outer html
  * @return inner HTML without marked up jrpan Selection
  */
 const removeMarkedUpText = (selected_markup, parent_inner_html) => {
-	const re = new RegExp(markedUp(kuromojiMarkup(selected_markup)), 'g')
-	return parent_inner_html.replace(re, selected_markup)
-}
+	const re = new RegExp(markedUp(kuromojiMarkup(selected_markup)), 'g');
+	return parent_inner_html.replace(re, selected_markup);
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -90,7 +88,7 @@ const removeMarkedUpText = (selected_markup, parent_inner_html) => {
  */
 const isSelectable = selection =>
 	selection.trim() !== '' &&
-	selection.match(/[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF]/g) !== null
+	selection.match(/[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF]/g) !== null;
 
 /**
  * @param {String} word
@@ -99,11 +97,11 @@ const isSelectable = selection =>
 const isKatakana = word =>
 	word.match(/[\u30A0-\u30FF]/g)
 		? word.match(/[\u30A0-\u30FF]/g).length === word.length
-		: false
+		: false;
 
 /**
  * @param {String} word
  * @return {Boolean} if the word is only made out of Katakana.
  */
 const hasjapaneseCharacter = word =>
-	word.match(/[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF]/g) ? true : false
+	word.match(/[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF]/g) ? true : false;

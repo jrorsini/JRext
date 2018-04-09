@@ -2,10 +2,12 @@
 
 /**
  * - TODO
- * x can't seem to select 日本語 it only selects 日本
+ * x can't seem to select 日本語 it only selects 日本 (handling suffixes)
  * x japanesePod101 font-size and line-height to fix.
  * x sort out code (re-usable vs not re-usable)
  * x Add Manual
+ * x -Te form of a verb
+ * x Set up mocha tests.
  */
 
 /**
@@ -53,14 +55,14 @@ const generateContentFromWord = data => {
 							}
 							${e['english_definitions'].join(', ')}
 						</li>
-					`
+					`;
 				})
 				.join('')}
 			<ul/>
 		</div>
 		<button class="jrpan-btn">JRpan it</button>
-	`
-}
+	`;
+};
 
 /**
  * @param {String} word to display
@@ -69,40 +71,40 @@ const generateContentFromWord = data => {
 
 const showWord = word => {
 	getTranslation(word).then(res => {
-		fillPopup(res)
-		soundTxt(word).then(setAudio)
-	})
-}
+		fillPopup(res);
+		soundTxt(word).then(setAudio);
+	});
+};
 
-createElement('jrpan-block')
+createElement('jrpan-block');
 
 kuromojiLoaded().then(msg => {
-	console.log(msg)
+	console.log(msg);
 	document.addEventListener('mouseup', e => {
-		jrpan_selection = document.querySelector('.jrpan-selection')
-		selected_text = getSelectionText()
-		whole_text = e.target.innerHTML
+		jrpan_selection = document.querySelector('.jrpan-selection');
+		selected_text = getSelectionText();
+		whole_text = e.target.innerHTML;
 		if (isSelectable(selected_text)) {
 			//Checks if there is already a text selected in the page
 			if (jrpan_selection) {
 				e.target.innerHTML = removeMarkedUpText(
 					jrpan_selection.innerHTML,
 					whole_text
-				)
+				);
 			}
 
-			const re = new RegExp(escaped(selected_text), 'g')
+			const re = new RegExp(escaped(selected_text), 'g');
 			e.target.innerHTML = whole_text.replace(
 				re,
 				markedUp(kuromojiMarkup(selected_text))
-			)
+			);
 			Object.values(document.getElementsByClassName('jrpan-gloss-tag')).map(
 				tagEl => {
 					tagEl.addEventListener('click', e => {
-						showWord(e.target.innerHTML)
-					})
+						showWord(e.target.innerHTML);
+					});
 				}
-			)
+			);
 		}
-	})
-})
+	});
+});

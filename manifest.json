@@ -29,7 +29,6 @@
 			"css": ["jrpan.css"],
 			"js": [
 				"/content_scripts/kuromoji.js",
-				"/content_scripts/load-kuromoji.js",
 				"/content_scripts/vars.js",
 				"/content_scripts/pure-functions.js",
 				"/content_scripts/pure-promises.js",
