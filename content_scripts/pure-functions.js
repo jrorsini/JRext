@@ -64,7 +64,7 @@ const generateMarkup = word =>
 			: `<div class="jrpan-gloss-tag ${part_of_speech[word.pos]}-gloss">${
 					word.surface_form
 			  }</div>`
-		: `<div>${word.surface_form}</div>`;
+		: `<div class="jrpan-gloss-tag">${word.surface_form}</div>`;
 
 /**
  * @param {String, String} Jrpan marked up element inner text, outer html
