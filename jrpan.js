@@ -2,8 +2,10 @@
 
 /**
  * - TODO
+ * x can't seem to select 日本語 it only selects 日本
  * x japanesePod101 font-size and line-height to fix.
  * x sort out code (re-usable vs not re-usable)
+ * x Add Manual
  */
 
 /**
