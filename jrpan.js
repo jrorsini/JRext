@@ -79,9 +79,26 @@ const showWord = word => {
 const mouseUpEventHandler = event => {
 	const selected_text = getSelectionText();
 	const jrpanTranslatorElement = document.getElementById('jrpan-translator');
+	const whole_text = event.target.innerHTML;
 	selected_text !== ''
 		? jrpanTranslatorElement.classList.add('jrpan-translator--active')
 		: jrpanTranslatorElement.classList.remove('jrpan-translator--active');
+
+	jrpanTranslatorElement.addEventListener('mouseup', () => {
+		const re = new RegExp(escaped(selected_text), 'g');
+		event.target.innerHTML = whole_text.replace(
+			re,
+			markedUp(kuromojiMarkup(selected_text))
+		);
+		// Object.values(document.getElementsByClassName('jrpan-gloss-tag')).map(
+		// 	tagEl => {
+		// 		tagEl.addEventListener('click', e => {
+		// 			showWord(event.target.innerHTML);
+		// 		});
+		// 	}
+		// );
+	});
+
 	// const jrpan_selection = document.querySelector('.jrpan-selection');
 	// const selected_text = getSelectionText();
 	// const whole_text = event.target.innerHTML;
