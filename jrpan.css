@@ -12,8 +12,12 @@
 	z-index: 999;
 	width: 30px;
 	height: 30px;
+	line-height: 28px;
+	text-align: center;
+	color: #fff;
 	background: grey;
 	border-radius: 30px;
+	cursor: pointer;
 }
 
 .jrpan-translator--active {

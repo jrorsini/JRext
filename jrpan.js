@@ -114,5 +114,6 @@ const mouseUpEventHandler = event => {
 
 kuromojiLoaded().then(msg => {
 	createElement('jrpan-translator');
+	document.getElementById('jrpan-translator').innerHTML = 'JR';
 	document.addEventListener('mouseup', mouseUpEventHandler);
 });
