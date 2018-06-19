@@ -28,12 +28,12 @@
 			"matches": ["<all_urls>"],
 			"css": ["jrpan.css"],
 			"js": [
-				"/content_scripts/kuromoji.js",
-				"/content_scripts/vars.js",
-				"/content_scripts/pure-functions.js",
-				"/content_scripts/pure-promises.js",
-				"/content_scripts/functions.js",
-				"/content_scripts/promises.js",
+				"/scripts/kuromoji.js",
+				"/scripts/vars.js",
+				"/scripts/pure-functions.js",
+				"/scripts/pure-promises.js",
+				"/scripts/functions.js",
+				"/scripts/promises.js",
 				"/jrpan.js"
 			]
 		}
