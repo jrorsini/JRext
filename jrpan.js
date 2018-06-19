@@ -78,7 +78,10 @@ const showWord = word => {
 
 const mouseUpEventHandler = event => {
 	const selected_text = getSelectionText();
-	if (selected_text) console.log(selected_text);
+	const jrpanTranslatorElement = document.getElementById('jrpan-translator');
+	selected_text !== ''
+		? jrpanTranslatorElement.classList.add('jrpan-translator--active')
+		: jrpanTranslatorElement.classList.remove('jrpan-translator--active');
 	// const jrpan_selection = document.querySelector('.jrpan-selection');
 	// const selected_text = getSelectionText();
 	// const whole_text = event.target.innerHTML;
@@ -106,8 +109,10 @@ const mouseUpEventHandler = event => {
 	// }
 };
 
-createElement('jrpan-block');
+// createElement('jrpan-block');
+// jrpanBlockElement.innerHTML = 'test';
 
 kuromojiLoaded().then(msg => {
+	createElement('jrpan-translator');
 	document.addEventListener('mouseup', mouseUpEventHandler);
 });
