@@ -134,8 +134,12 @@ audio#jrpan-sound {
 	color: #274055;
 }
 
-.jrpan-selection .jrpan-gloss-tajrpan-gloss-tag--selectable:hover {
+.jrpan-selection .jrpan-gloss-tag--selectable:hover {
 	text-decoration: underline;
+}
+
+.jrpan-selection .jrpan-gloss-tag {
+	display: inline-block;
 }
 
 .jrpan-selection .jrpan-gloss-tag--selectable {
