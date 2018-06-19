@@ -60,10 +60,12 @@ const markedUp = selection => `<div class="jrpan-selection">${selection}</div>`;
 const generateMarkup = word =>
 	hasjapaneseCharacter(word.surface_form)
 		? isKatakana(word.surface_form)
-			? `<div class="jrpan-gloss-tag katakana-gloss">${word.surface_form}</div>`
-			: `<div class="jrpan-gloss-tag ${part_of_speech[word.pos]}-gloss">${
+			? `<div class="jrpan-gloss-tag jrpan-gloss-tag--selectable katakana-gloss">${
 					word.surface_form
 			  }</div>`
+			: `<div class="jrpan-gloss-tag jrpan-gloss-tag--selectable ${
+					part_of_speech[word.pos]
+			  }-gloss">${word.surface_form}</div>`
 		: `<div class="jrpan-gloss-tag">${word.surface_form}</div>`;
 
 /**
