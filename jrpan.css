@@ -134,10 +134,6 @@ audio#jrpan-sound {
 	color: #274055;
 }
 
-.jrpan-selection .jrpan-gloss-tag--selectable:hover {
-	text-decoration: underline;
-}
-
 .jrpan-selection .jrpan-gloss-tag {
 	display: inline-block;
 }
@@ -145,4 +141,8 @@ audio#jrpan-sound {
 .jrpan-selection .jrpan-gloss-tag--selectable {
 	display: inline-block;
 	cursor: pointer;
+}
+
+.jrpan-selection .jrpan-gloss-tag--selectable:hover {
+	text-decoration: underline;
 }

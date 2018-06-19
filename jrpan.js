@@ -2,7 +2,7 @@
 
 /**
  * - TODO
- * x can't seem to select 日本語 it only selects 日本 (handling suffixes)
+ * x can't seem to select 譌･譛ｬ隱� it only selects 譌･譛ｬ (handling suffixes)
  * x japanesePod101 font-size and line-height to fix.
  * x sort out code (re-usable vs not re-usable)
  * x Add Manual
@@ -76,35 +76,38 @@ const showWord = word => {
 	});
 };
 
+const mouseUpEventHandler = event => {
+	const selected_text = getSelectionText();
+	if (selected_text) console.log(selected_text);
+	// const jrpan_selection = document.querySelector('.jrpan-selection');
+	// const selected_text = getSelectionText();
+	// const whole_text = event.target.innerHTML;
+	// if (isSelectable(selected_text)) {
+	// 	//Checks if there is already a text selected in the page
+	// 	if (jrpan_selection) {
+	// 		event.target.innerHTML = removeMarkedUpText(
+	// 			jrpan_selection.innerHTML,
+	// 			whole_text
+	// 		);
+	// 	}
+
+	// 	const re = new RegExp(escaped(selected_text), 'g');
+	// 	event.target.innerHTML = whole_text.replace(
+	// 		re,
+	// 		markedUp(kuromojiMarkup(selected_text))
+	// 	);
+	// 	Object.values(document.getElementsByClassName('jrpan-gloss-tag')).map(
+	// 		tagEl => {
+	// 			tagEl.addEventListener('click', e => {
+	// 				showWord(event.target.innerHTML);
+	// 			});
+	// 		}
+	// 	);
+	// }
+};
+
 createElement('jrpan-block');
 
 kuromojiLoaded().then(msg => {
-	console.log(msg);
-	document.addEventListener('mouseup', e => {
-		jrpan_selection = document.querySelector('.jrpan-selection');
-		selected_text = getSelectionText();
-		whole_text = e.target.innerHTML;
-		if (isSelectable(selected_text)) {
-			//Checks if there is already a text selected in the page
-			if (jrpan_selection) {
-				e.target.innerHTML = removeMarkedUpText(
-					jrpan_selection.innerHTML,
-					whole_text
-				);
-			}
-
-			const re = new RegExp(escaped(selected_text), 'g');
-			e.target.innerHTML = whole_text.replace(
-				re,
-				markedUp(kuromojiMarkup(selected_text))
-			);
-			Object.values(document.getElementsByClassName('jrpan-gloss-tag')).map(
-				tagEl => {
-					tagEl.addEventListener('click', e => {
-						showWord(e.target.innerHTML);
-					});
-				}
-			);
-		}
-	});
+	document.addEventListener('mouseup', mouseUpEventHandler);
 });
