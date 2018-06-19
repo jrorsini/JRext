@@ -51,7 +51,7 @@ const escaped = text =>
  * @param {String} selected text to markup.
  * @return {String} marked up selection.
  */
-const markedUp = selection => `<p class="jrpan-selection">${selection}</p>`;
+const markedUp = selection => `<div class="jrpan-selection">${selection}</div>`;
 
 /**
  * @param {Object} word's object

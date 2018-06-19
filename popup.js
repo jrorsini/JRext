@@ -7,5 +7,6 @@ const click = e => {
 	window.close();
 };
 document.addEventListener('DOMContentLoaded', function() {
-	// document.getElementById('activationBtn').addEventListener('click', click)
+	// chrome.browserAction.setBadgeText({ text: 'ON' });
+	// document.getElementById('activationBtn').addEventListener('click', click);
 });
