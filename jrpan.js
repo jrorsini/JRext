@@ -24,6 +24,17 @@
  */
 
 /**
+ = if Japanese dictionaries are loaded
+ + Creates jrpan button 
+ + adds event to the DOM
+ */
+kuromojiLoaded().then(msg => {
+	createElement('jrpan-translator');
+	document.getElementById('jrpan-translator').innerHTML = 'JR';
+	document.addEventListener('mouseup', mouseUpEventHandler);
+});
+
+/**
  * @param {String} word to display
  * @function Combine promises and functions interacting with the DOM in order to
  */
@@ -83,9 +94,3 @@ const mouseUpEventHandler = event => {
 
 // createElement('jrpan-block');
 // jrpanBlockElement.innerHTML = 'test';
-
-kuromojiLoaded().then(msg => {
-	createElement('jrpan-translator');
-	document.getElementById('jrpan-translator').innerHTML = 'JR';
-	document.addEventListener('mouseup', mouseUpEventHandler);
-});
