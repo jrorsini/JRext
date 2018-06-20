@@ -46,3 +46,44 @@ const setAudio = src => {
 	audio.src = src;
 	audio.play();
 };
+
+/**
+ * @param {object} fetched data from jisho's API.
+ * @return {string} HTML text value.
+ */
+const generateContentFromWord = data => {
+	return `
+		<div class="jrpan-popup">
+			<audio controls id="jrpan-sound">
+				<source src="" type="audio/mpeg">
+			</audio>
+			${
+				data['japanese'][0]['word']
+					? `<small>${data['japanese'][0]['word']}</small>`
+					: ''
+			}
+			<p><b>${data['japanese'][0]['reading']}</b></p>
+			<ul class="jrpan-words-definition">
+			${data['senses']
+				.map(e => {
+					return `
+						<li>
+							${
+								e['parts_of_speech'] && e['parts_of_speech'].length > 0
+									? `
+									<small><u><i>
+										${e['parts_of_speech'].map(e => e).join(', ')}
+									</i></u></small><br/>
+									`
+									: ``
+							}
+							${e['english_definitions'].join(', ')}
+						</li>
+					`;
+				})
+				.join('')}
+			<ul/>
+		</div>
+		<button class="jrpan-btn">JRpan it</button>
+	`;
+};

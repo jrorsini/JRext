@@ -5,10 +5,12 @@
 	z-index: 999;
 }
 
-#jrpan-translator {
+.jrpan-translator {
 	position: fixed;
 	right: 10px;
 	bottom: 10px;
+	margin-right: -100px;
+	margin-bottom: -100px;
 	z-index: 999;
 	width: 30px;
 	height: 30px;
@@ -18,10 +20,13 @@
 	background: grey;
 	border-radius: 30px;
 	cursor: pointer;
+	transition: ease 0.2s all;
 }
 
 .jrpan-translator--active {
 	background: red !important;
+	margin-right: 0;
+	margin-bottom: 0;
 }
 
 .jrpan-popup {

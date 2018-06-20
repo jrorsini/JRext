@@ -25,6 +25,7 @@ let getSelectionText = () => {
 const createElement = id => {
 	const node = document.createElement('div');
 	node.id = id;
+	node.classList.add(id);
 	document.body.appendChild(node);
 };
 

@@ -24,47 +24,6 @@
  */
 
 /**
- * @param {object} fetched data from jisho's API.
- * @return {string} HTML text value.
- */
-const generateContentFromWord = data => {
-	return `
-		<div class="jrpan-popup">
-			<audio controls id="jrpan-sound">
-				<source src="" type="audio/mpeg">
-			</audio>
-			${
-				data['japanese'][0]['word']
-					? `<small>${data['japanese'][0]['word']}</small>`
-					: ''
-			}
-			<p><b>${data['japanese'][0]['reading']}</b></p>
-			<ul class="jrpan-words-definition">
-			${data['senses']
-				.map(e => {
-					return `
-						<li>
-							${
-								e['parts_of_speech'] && e['parts_of_speech'].length > 0
-									? `
-									<small><u><i>
-										${e['parts_of_speech'].map(e => e).join(', ')}
-									</i></u></small><br/>
-									`
-									: ``
-							}
-							${e['english_definitions'].join(', ')}
-						</li>
-					`;
-				})
-				.join('')}
-			<ul/>
-		</div>
-		<button class="jrpan-btn">JRpan it</button>
-	`;
-};
-
-/**
  * @param {String} word to display
  * @function Combine promises and functions interacting with the DOM in order to
  */
@@ -77,12 +36,15 @@ const showWord = word => {
 };
 
 const mouseUpEventHandler = event => {
-	const selected_text = getSelectionText();
+	const selected_text = getSelectionText().trim();
 	const jrpanTranslatorElement = document.getElementById('jrpan-translator');
 	const whole_text = event.target.innerHTML;
-	selected_text !== '' && isSelectable(selected_text)
-		? jrpanTranslatorElement.classList.add('jrpan-translator--active')
-		: jrpanTranslatorElement.classList.remove('jrpan-translator--active');
+	console.log(selected_text);
+	setTimeout(() => {
+		selected_text !== '' && isSelectable(selected_text)
+			? jrpanTranslatorElement.classList.add('jrpan-translator--active')
+			: jrpanTranslatorElement.classList.remove('jrpan-translator--active');
+	}, 0);
 
 	jrpanTranslatorElement.addEventListener('mouseup', () => {
 		const re = new RegExp(escaped(selected_text), 'g');
@@ -90,13 +52,6 @@ const mouseUpEventHandler = event => {
 			re,
 			markedUp(kuromojiMarkup(selected_text))
 		);
-		// Object.values(document.getElementsByClassName('jrpan-gloss-tag')).map(
-		// 	tagEl => {
-		// 		tagEl.addEventListener('click', e => {
-		// 			showWord(event.target.innerHTML);
-		// 		});
-		// 	}
-		// );
 	});
 
 	// const jrpan_selection = document.querySelector('.jrpan-selection');
