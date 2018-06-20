@@ -80,7 +80,7 @@ const mouseUpEventHandler = event => {
 	const selected_text = getSelectionText();
 	const jrpanTranslatorElement = document.getElementById('jrpan-translator');
 	const whole_text = event.target.innerHTML;
-	selected_text !== ''
+	selected_text !== '' && isSelectable(selected_text)
 		? jrpanTranslatorElement.classList.add('jrpan-translator--active')
 		: jrpanTranslatorElement.classList.remove('jrpan-translator--active');
 
