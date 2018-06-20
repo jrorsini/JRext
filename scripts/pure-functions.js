@@ -22,10 +22,11 @@ let getSelectionText = () => {
  * @param {String} element's ID
  * @function add jrpan-block to document's body.
  */
-const createElement = id => {
+const createJrpanButton = id => {
 	const node = document.createElement('div');
 	node.id = id;
 	node.classList.add(id);
+	node.innerHTML = 'JR';
 	document.body.appendChild(node);
 };
 

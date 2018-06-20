@@ -29,8 +29,7 @@
  + adds event to the DOM
  */
 kuromojiLoaded().then(msg => {
-	createElement('jrpan-translator');
-	document.getElementById('jrpan-translator').innerHTML = 'JR';
+	createJrpanButton('jrpan-translator');
 	document.addEventListener('mouseup', mouseUpEventHandler);
 });
 
