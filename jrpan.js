@@ -34,33 +34,40 @@ kuromojiLoaded().then(msg => {
 });
 
 /**
- * @param {String} word to display
- * @function Combine promises and functions interacting with the DOM in order to
+	Don't knwo exactly what it does so comment pending
  */
 
 const showWord = word => {
-	getTranslation(word).then(res => {
-		fillPopup(res);
-		soundTxt(word).then(setAudio);
-	});
+	console.log(word);
+	// getTranslation(word).then(res => {
+	// 	fillPopup(res);
+	// 	soundTxt(word).then(setAudio);
+	// });
 };
 
 const mouseUpEventHandler = event => {
-	const selected_text = getSelectionText().trim();
-	const jrpanTranslatorElement = document.getElementById('jrpan-translator');
-	const whole_text = event.target.innerHTML;
-	console.log(selected_text);
+	const selection = getSelectionText().trim(),
+		jrpan_btn = document.getElementById('jrpan-translator'),
+		inner_txt = event.target.innerText;
 	setTimeout(() => {
-		selected_text !== '' && isSelectable(selected_text)
-			? jrpanTranslatorElement.classList.add('jrpan-translator--active')
-			: jrpanTranslatorElement.classList.remove('jrpan-translator--active');
+		selection !== '' && isSelectable(selection)
+			? jrpan_btn.classList.add('jrpan-translator--active')
+			: jrpan_btn.classList.remove('jrpan-translator--active');
 	}, 0);
 
-	jrpanTranslatorElement.addEventListener('mouseup', () => {
-		const re = new RegExp(escaped(selected_text), 'g');
-		event.target.innerHTML = whole_text.replace(
+	Object.values(document.getElementsByClassName('jrpan-gloss-tag')).map(
+		tagEl => {
+			tagEl.addEventListener('click', e => {
+				showWord(e.target.innerHTML);
+			});
+		}
+	);
+
+	jrpan_btn.addEventListener('mouseup', () => {
+		const re = new RegExp(escaped(selection), 'g');
+		event.target.innerHTML = inner_txt.replace(
 			re,
-			markedUp(kuromojiMarkup(selected_text))
+			markedUp(kuromojiMarkup(selection))
 		);
 	});
 
